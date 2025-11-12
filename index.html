@@ -131,7 +131,135 @@
     .btn:hover:before{transform:translateX(0)}
 
     /* ===== Hero / Cards ===== */
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;margin-top:24px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;margin-top:24px}
+    
+    /* ===== Enhanced Intro Section ===== */
+    .intro-badge{
+      display:inline-block;padding:6px 14px;border-radius:999px;
+      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
+      border:1px solid var(--border);font-size:14px;margin-bottom:16px;
+      animation:badge-float 3s ease-in-out infinite;
+    }
+    @keyframes badge-float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-5px)}
+    }
+    .intro-card h1{margin-bottom:8px}
+    .nickname,.nickname-en{
+      font-size:24px;color:var(--muted);font-weight:400;
+    }
+    .intro-info{
+      display:flex;flex-direction:column;gap:16px;margin:24px 0;
+    }
+    .info-item{
+      display:flex;gap:12px;align-items:start;
+      padding:12px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(79,140,255,.05), rgba(0,208,148,.05));
+      border:1px solid var(--border);
+      transition:all .3s ease;
+    }
+    .info-item:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
+      transform:translateX(8px);
+    }
+    .info-icon{font-size:28px}
+    .info-item strong{display:block;margin-bottom:2px;color:var(--text)}
+    .info-item .muted{margin:0;font-size:14px}
+    
+    .intro-actions{
+      display:flex;gap:12px;margin:24px 0;flex-wrap:wrap;
+    }
+    .btn-primary,.btn-secondary{
+      padding:12px 24px;border-radius:12px;text-decoration:none;
+      font-weight:600;font-size:15px;
+      transition:all .3s ease;display:inline-flex;align-items:center;gap:8px;
+      border:2px solid var(--border);
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      color:#fff;border-color:transparent;
+      box-shadow:0 4px 16px -4px var(--ring);
+    }
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 24px -4px var(--ring);
+    }
+    .btn-secondary{
+      background:var(--card);color:var(--text);
+    }
+    .btn-secondary:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
+      border-color:var(--primary);transform:translateY(-3px);
+    }
+    
+    .intro-stats{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      margin-top:24px;padding-top:24px;border-top:1px solid var(--border);
+    }
+    .stat-item{text-align:center}
+    .stat-value{
+      font-size:32px;font-weight:700;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .stat-label{font-size:13px;color:var(--muted);margin-top:4px}
+    
+    .profile-card{position:relative;overflow:visible}
+    .profile-wrapper{
+      position:relative;display:flex;flex-direction:column;align-items:center;
+    }
+    .profile-ring{
+      position:absolute;inset:-8px;border-radius:50%;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      opacity:.3;filter:blur(20px);
+      animation:ring-pulse 3s ease-in-out infinite;
+    }
+    @keyframes ring-pulse{
+      0%,100%{transform:scale(1);opacity:.3}
+      50%{transform:scale(1.1);opacity:.5}
+    }
+    .profile-img{
+      width:100%;aspect-ratio:1/1;object-fit:cover;
+      border-radius:50%;position:relative;z-index:1;
+      border:4px solid var(--card);
+      box-shadow:0 8px 32px -8px rgba(0,0,0,.3);
+      transition:transform .5s ease;
+    }
+    .profile-card:hover .profile-img{
+      transform:scale(1.05) rotate(5deg);
+    }
+    .profile-status{
+      margin-top:16px;display:flex;align-items:center;gap:8px;
+      padding:8px 16px;border-radius:999px;
+      background:linear-gradient(135deg, rgba(0,208,148,.15), rgba(79,140,255,.15));
+      border:1px solid var(--border);font-size:13px;
+    }
+    .status-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(0,208,148,.3);
+      animation:status-blink 2s ease-in-out infinite;
+    }
+    @keyframes status-blink{
+      0%,100%{opacity:1}
+      50%{opacity:.5}
+    }
+    
+    .social-links{
+      display:flex;gap:10px;justify-content:center;margin-top:20px;
+    }
+    .social-btn{
+      width:44px;height:44px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--card);border:1px solid var(--border);
+      color:var(--text);text-decoration:none;
+      transition:all .3s ease;
+    }
+    .social-btn:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
+      border-color:var(--primary);transform:translateY(-4px) rotate(10deg);
+      box-shadow:0 8px 16px -4px var(--ring);
+    }
     .card{
       background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 0%), color-mix(in oklab, var(--card), transparent 14%));
       padding:18px;border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;
@@ -197,6 +325,66 @@
     .grid{display:grid;gap:24px}
     .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+    
+    /* ===== Enhanced Skills Section ===== */
+    .skill-category{
+      margin-bottom:32px;padding:24px;border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(79,140,255,.03), rgba(0,208,148,.03));
+      border:1px solid var(--border);
+      transition:all .3s ease;
+    }
+    .skill-category:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.06), rgba(0,208,148,.06));
+      box-shadow:0 8px 24px -8px var(--ring);
+    }
+    .category-header{
+      display:flex;align-items:center;gap:12px;margin-bottom:20px;
+    }
+    .category-icon{font-size:32px}
+    .category-header h3{margin:0;font-size:22px}
+    
+    .skill-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .skill-item{
+      display:flex;flex-direction:column;gap:8px;
+      padding:16px;border-radius:12px;
+      background:var(--card);border:1px solid var(--border);
+      transition:all .3s ease;
+    }
+    .skill-item:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 20px -8px var(--ring);
+      border-color:var(--primary);
+    }
+    .skill-icon{
+      font-size:28px;margin-bottom:4px;
+      display:flex;align-items:center;justify-content:center;
+      width:48px;height:48px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
+    }
+    .skill-icon svg{width:24px;height:24px;color:var(--primary)}
+    .skill-name{
+      font-weight:600;font-size:15px;color:var(--text);
+    }
+    
+    .soft-skills{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
+    }
+    .soft-skill-item{
+      display:flex;align-items:center;gap:12px;
+      padding:16px 20px;border-radius:12px;
+      background:var(--card);border:1px solid var(--border);
+      transition:all .3s ease;font-weight:500;
+    }
+    .soft-skill-item:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
+      border-color:var(--primary);
+      transform:translateX(8px);
+    }
+    .soft-icon{font-size:24px}
 
     .pill{
       display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;
@@ -275,6 +463,62 @@
     .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
     .timeline .item{position:relative;padding-left:16px;margin-bottom:12px}
     .timeline .item:before{content:"";position:absolute;left:-2px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%)}
+
+    /* ===== Contact Items ===== */
+    .contact-item{
+      text-align:center;padding:18px 16px;position:relative;
+      transition:transform .3s ease, box-shadow .3s ease;
+      cursor:pointer;
+    }
+    .contact-item:hover{
+      transform:translateY(-4px);
+      box-shadow:0 12px 32px -12px var(--ring);
+    }
+    .contact-item .contact-link{position:relative;z-index:2}
+    .contact-item:before{
+      content:"";position:absolute;inset:0;z-index:1;
+    }
+    .contact-icon{
+      font-size:32px;margin-bottom:8px;
+      display:inline-flex;align-items:center;justify-content:center;
+      width:56px;height:56px;border-radius:50%;
+      background:linear-gradient(135deg, rgba(79,140,255,.1), rgba(0,208,148,.1));
+      border:2px solid var(--border);
+      transition:all .3s ease;
+    }
+    .contact-icon svg{
+      width:26px;height:26px;color:var(--primary);
+      transition:transform .3s ease;
+    }
+    .contact-item:hover .contact-icon{
+      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
+      border-color:var(--primary);
+      transform:scale(1.08) rotate(5deg);
+    }
+    .contact-item:hover .contact-icon svg{
+      transform:scale(1.1);
+    }
+    .contact-item h3{
+      font-size:14px;margin:8px 0 6px;color:var(--text);
+      font-weight:600;
+    }
+    .contact-link{
+      color:var(--primary);text-decoration:none;
+      font-size:13px;display:block;margin-top:2px;
+      transition:color .3s ease;word-break:break-word;
+      line-height:1.4;
+    }
+    .contact-link:hover{color:var(--accent)}
+    .btn-copy{
+      margin-top:8px;padding:4px 10px;font-size:12px;
+      border:1px solid var(--border);background:var(--card);
+      color:var(--text);border-radius:6px;cursor:pointer;
+      transition:all .3s ease;position:relative;
+    }
+    .btn-copy:hover{
+      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
+      border-color:var(--primary);transform:translateY(-2px);
+    }
 
     footer{border-top:1px solid var(--border);margin-top:24px}
     .muted{color:var(--muted)}
@@ -369,27 +613,87 @@
   <main class="container">
     <!-- 1. Introduction / Profile -->
     <section id="intro" class="hero section reveal">
-      <div class="card">
-        <h1>สวัสดีครับผม <br><span class="shine">ทักษิณ นิสภวาณิชย์</span>&nbsp;(ตึ๊ง)</h1>
-        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span>&nbsp;(Tueng)</h2>
-        <p class="lead">สาขา: เทคโนโลยีสารสนเทศ <br>คณะ: วิทยาศาสตร์ <br>มหาวิทยาลัย: ราชภัฏอุดรธานี  <br>ชั้นปีที่ 3 <br>สนใจ [AI / Web / Cybersecurity]</p>
-        <div class="row">
-          <span class="kpi">📍 จังหวัด: อุดรธานี</span>
-          <span class="kpi">🎯 เป้าหมาย: [Frontend Dev / Data Analyst / etc.]</span>
-          <span class="kpi">📧 Email: <span id="emailText">taksinonly@gmail.com</span>
-            <button class="btn tip" id="copyEmail" aria-label="คัดลอกอีเมล"><span>คัดลอก</span><span class="tiptext" role="status">คัดลอกแล้ว!</span></button>
-          </span>
+      <div class="card intro-card">
+        <div class="intro-badge">👋 สวัสดี! ยินดีต้อนรับ</div>
+        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span> <span class="nickname"></span></h1>
+        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span> <span class="nickname-en"></span></h2>
+        
+        <div class="intro-info">
+          <div class="info-item">
+            <span class="info-icon">🎓</span>
+            <div>
+              <strong>เทคโนโลยีสารสนเทศ</strong>
+              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • ชั้นปีที่ 3</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">💡</span>
+            <div>
+              <strong>สนใจด้าน</strong>
+              <p class="muted">Web Development • AI • Cybersecurity</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🎯</span>
+            <div>
+              <strong>เป้าหมาย</strong>
+              <p class="muted">Frontend Developer • Web Developer</p>
+            </div>
+          </div>
         </div>
-        <p class="muted"></p>
+
+        <div class="intro-actions">
+          <a href="#contact" class="btn-primary">
+            <span>📧 ติดต่อฉัน</span>
+          </a>
+          <a href="#projects" class="btn-secondary">
+            <span>👀 ดูผลงาน</span>
+          </a>
+        </div>
+        
+        <div class="intro-stats">
+          <div class="stat-item">
+            <div class="stat-value">10+</div>
+            <div class="stat-label">โครงการ</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5+</div>
+            <div class="stat-label">ทักษะ</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">3+</div>
+            <div class="stat-label">รางวัล</div>
+          </div>
+        </div>
       </div>
-      <div class="card" aria-label="Profile image">
-        <!-- วางลิงก์รูปโปรไฟล์ของคุณแทน src ด้านล่าง -->
-        <div class="thumb" style="border-radius:16px;overflow:hidden;border:1px solid var(--border)">
-          <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438096164514824293/unnamed.jpg?ex=6915a2ec&is=6914516c&hm=cb7a8ce0c78b19ba48bd504aa8fc8b35ad4ed6c5fb66e9c564ce854815f930a6&=&format=webp&width=960&height=960" alt="Profile" style="width:100%;display:block;aspect-ratio:1/1;object-fit:cover;transform:scale(1.02);transition:transform .5s ease, filter .35s ease" />
+      
+      <div class="card profile-card" aria-label="Profile image">
+        <div class="profile-wrapper">
+          <div class="profile-ring"></div>
+          <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438096164514824293/unnamed.jpg?ex=6915a2ec&is=6914516c&hm=cb7a8ce0c78b19ba48bd504aa8fc8b35ad4ed6c5fb66e9c564ce854815f930a6&=&format=webp&width=960&height=960" alt="Profile" class="profile-img" />
+          <div class="profile-status">
+            <span class="status-dot"></span>
+            <span>Available for work</span>
+          </div>
         </div>
-        <div class="row" style="margin-top:10px">
-          <a class="tag" href="https://github.com/taksin105" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="tag" href="https://taksin105.github.io/" target="_blank" rel="noreferrer">Portfolio</a>
+        <div class="social-links">
+          <a class="social-btn" href="https://github.com/taksin105" target="_blank" rel="noreferrer" title="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a class="social-btn" href="https://taksin105.github.io/" target="_blank" rel="noreferrer" title="Portfolio">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -397,27 +701,101 @@
     <!-- 2. Skills -->
     <section id="skills" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ทักษะ (Skills)</h2></div>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Programming & Tools</h3>
-          <div class="row">
-            <span class="pill">Python</span>
-            <span class="pill">Java</span>
-            <span class="pill">C++</span>
-            <span class="pill">HTML/CSS/JS</span>
-            <span class="pill">PHP</span>
-            <span class="pill">SQL</span>
-            <span class="pill">Git / VS Code</span>
-            <span class="pill">Figma</span>
-            <span class="pill">Photoshop</span>
+      
+      <!-- Programming Languages -->
+      <div class="skill-category">
+        <div class="category-header">
+          <span class="category-icon">💻</span>
+          <h3>Programming Languages</h3>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-item">
+            <div class="skill-icon">🐍</div>
+            <div class="skill-name">Python</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">☕</div>
+            <div class="skill-name">Java</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⚡</div>
+            <div class="skill-name">C++</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🌐</div>
+            <div class="skill-name">HTML/CSS/JS</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🐘</div>
+            <div class="skill-name">PHP</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🗄️</div>
+            <div class="skill-name">SQL</div>
           </div>
         </div>
-        <div class="card">
+      </div>
+
+      <!-- Tools & Design -->
+      <div class="skill-category">
+        <div class="category-header">
+          <span class="category-icon">🛠️</span>
+          <h3>Tools & Design</h3>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="skill-name">Git</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">💼</div>
+            <div class="skill-name">VS Code</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🎨</div>
+            <div class="skill-name">Figma</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🖼️</div>
+            <div class="skill-name">Photoshop</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skill-category">
+        <div class="category-header">
+          <span class="category-icon">🤝</span>
           <h3>Soft Skills</h3>
-          <div class="row">
-            <span class="pill">การสื่อสาร</span>
-            <span class="pill">ทำงานเป็นทีม</span>
-            <span class="pill">แก้ปัญหา</span>
+        </div>
+        <div class="soft-skills">
+          <div class="soft-skill-item">
+            <span class="soft-icon">💬</span>
+            <span>การสื่อสาร</span>
+          </div>
+          <div class="soft-skill-item">
+            <span class="soft-icon">👥</span>
+            <span>ทำงานเป็นทีม</span>
+          </div>
+          <div class="soft-skill-item">
+            <span class="soft-icon">🧩</span>
+            <span>แก้ปัญหา</span>
+          </div>
+          <div class="soft-skill-item">
+            <span class="soft-icon">⏰</span>
+            <span>บริหารเวลา</span>
+          </div>
+          <div class="soft-skill-item">
+            <span class="soft-icon">💡</span>
+            <span>คิดสร้างสรรค์</span>
+          </div>
+          <div class="soft-skill-item">
+            <span class="soft-icon">📚</span>
+            <span>เรียนรู้ด้วยตนเอง</span>
           </div>
         </div>
       </div>
@@ -425,7 +803,7 @@
 
     <!-- 3. Projects / Portfolio -->
     <section id="projects" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ผลงานที่ผ่านมา (Projects / Portfolio)</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>ผลงานของผม 🔥 (Projects / Portfolio)</h2></div>
       <div class="grid cols-3">
         <!-- การ์ด 1: ShoppingCart -->
         <article class="card project">
@@ -438,17 +816,17 @@
         </article>
         <!-- การ์ด 2: ระบบเช่ารถยนต์ออนไลน์ -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/carrent/800/450" alt="CarRent Screenshot" /></div>
+          <div class="thumb"><img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438195808628637736/Screenshot_2025-09-27_234847.png?ex=6915ffb9&is=6914ae39&hm=2e9502bf0da2359aa1521eadda2cb5bf35095589edc42a48dc5fb3c035f376f7&=&format=webp&quality=lossless&width=550&height=261" alt="CarRent Screenshot" /></div>
           <h3>🚗 ระบบเช่ารถยนต์ออนไลน์</h3>
-          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถ • HTML/CSS/PHP • ระบบจองและจัดการข้อมูลรถยนต์</p>
+          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถยนต์ออนไลน์ • HTML/CSS/PHP • ระบบจองและจัดการข้อมูลรถยนต์</p>
           <div class="row">
             <a href="https://github.com/taksin105/CarRent" target="_blank" rel="noreferrer">GitHub Repo →</a>
           </div>
         </article>
         <!-- การ์ด 3: UX/UI Design E-commerce App -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/uxui/800/450" alt="E-commerce UX/UI Design" /></div>
-          <h3>🎨 ออกแบบ UX/UI แอป E-commerce</h3>
+          <div class="thumb"><img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438196468992442478/image.png?ex=69160056&is=6914aed6&hm=42af45493d33b390da682bfc5835a04d2b41789965ac97c5d42c2430cf8f8509&=&format=webp&quality=lossless" alt="E-commerce UX/UI Design" /></div>
+          <h3>🎨 ออกแบบ UX/UI <br>แอป E-commerce</h3>
           <p class="muted">ออกแบบส่วนติดต่อผู้ใช้และประสบการณ์ผู้ใช้ • Figma • UI Design, Wireframe, Prototype</p>
           <div class="row">
             <a href="https://www.figma.com/design/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&p=f&t=55swZ9OqjyWAwzol-0" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
@@ -457,9 +835,9 @@
         </article>
         <!-- การ์ด 4: UX/UI Design Movie App -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/movie/800/450" alt="Movie App UX/UI Design" /></div>
-          <h3>🎬 ออกแบบ UX/UI แอปดูหนัง</h3>
-          <p class="muted">ออกแบบแอปพลิเคชันสำหรับดูหนังออนไลน์ • Figma • Modern UI, User Experience Design</p>
+          <div class="thumb"><img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438196690107502592/image.png?ex=6916008b&is=6914af0b&hm=ed90f2509469157d223fc4d3d50a81564a009ff5cbbef31cd513bc7130982ff1&=&format=webp&quality=lossless" alt="Movie App UX/UI Design" /></div>
+          <h3>🎬 ออกแบบ UX/UI <br>แอปจองตั๋วภาพยนตร์</h3>
+          <p class="muted">ออกแบบแอปพลิเคชันสำหรับจองตั๋วภาพยนตร์ • Figma • Modern UI, User Experience Design</p>
           <div class="row">
             <a href="https://www.figma.com/design/5u0W6lUlA1FC1I3ztEZlXr/Untitled?t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
             <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
@@ -531,7 +909,7 @@
           </div>
         </div>
         <h3>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ วิทยาลัยเทคนิคอุดรธานี</h3>
-        <p class="muted">ออกแบบด้วยโปรแกรม Adobe Photoshop • ผลงานได้รับรางวัลชนะเลิศอันดับ 1 • แสดงความคิดสร้างสรรค์และทักษะการออกแบบกราฟิก</p>
+        <p class="muted">ประกวดออกแบบ Postcard ด้วยโปรแกรม Adobe Photoshop • ผลงานได้รับรางวัลชนะเลิศอันดับ 1 • แสดงความคิดสร้างสรรค์และทักษะการออกแบบกราฟิก</p>
       </article>
 
       <!-- Featured Activities Gallery -->
@@ -577,15 +955,68 @@
     <!-- 7. Contact -->
     <section id="contact" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ติดต่อ (Contact)</h2></div>
-      <div class="card">
-        <p>📧 Email: <a href="mailto:taksinonly@gmail.com">taksinonly@gmail.com</a></p>
-        <p>📞 Phone: <a href="tel:0918483500">091-848-3500</a>
-          <button class="btn tip" id="copyPhone" aria-label="คัดลอกเบอร์">คัดลอก<span class="tiptext" role="status">คัดลอกแล้ว!</span></button>
-        </p>
-        <p>🌐 GitHub: <a href="https://github.com/taksin105" target="_blank" rel="noreferrer">https://github.com/taksin105</a></p>
-        <p>🔗 Facebook: <a href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer">https://www.facebook.com/tueng.cintn</a></p>
-        <p>📱 Line: <span id="lineId">0918483500</span> <button class="btn tip" id="copyLine" aria-label="คัดลอกไลน์">คัดลอก<span class="tiptext" role="status">คัดลอกแล้ว!</span></button></p>
-        <p>📍 ที่อยู่จังหวัด: <span class="muted">126 หมู่ 10 ต.โนนสูง อ.เมือง จ.อุดรธานี 41330</span></p>
+      <div class="grid cols-3">
+        <!-- Email -->
+        <div class="card contact-item">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <a href="mailto:taksinonly@gmail.com" class="contact-link">taksinonly@gmail.com</a>
+        </div>
+        
+        <!-- Phone -->
+        <div class="card contact-item">
+          <div class="contact-icon">📞</div>
+          <h3>Phone</h3>
+          <a href="tel:0918483500" class="contact-link">091-848-3500</a>
+          <button class="btn-copy tip" id="copyPhone" aria-label="คัดลอกเบอร์">
+            <span>📋 คัดลอก</span>
+            <span class="tiptext" role="status">คัดลอกแล้ว!</span>
+          </button>
+        </div>
+        
+        <!-- GitHub -->
+        <div class="card contact-item">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </div>
+          <h3>GitHub</h3>
+          <a href="https://github.com/taksin105" target="_blank" rel="noreferrer" class="contact-link">@taksin105</a>
+        </div>
+        
+        <!-- Facebook -->
+        <div class="card contact-item">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <h3>Facebook</h3>
+          <a href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer" class="contact-link">Taksin Nisaphawanit</a>
+        </div>
+        
+        <!-- Line -->
+        <div class="card contact-item">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+          </div>
+          <h3>Line</h3>
+          <span class="contact-link" id="lineId">0918483500</span>
+          <button class="btn-copy tip" id="copyLine" aria-label="คัดลอกไลน์">
+            <span>📋 คัดลอก</span>
+            <span class="tiptext" role="status">คัดลอกแล้ว!</span>
+          </button>
+        </div>
+        
+        <!-- Location -->
+        <div class="card contact-item">
+          <div class="contact-icon">📍</div>
+          <h3>จังหวัด</h3>
+          <p class="contact-link muted">อุดรธานี</p>
+        </div>
       </div>
     </section>
 
@@ -661,11 +1092,31 @@
 
     const phone = '0918483500';
     const copyPhoneBtn = document.getElementById('copyPhone');
-    copyPhoneBtn?.addEventListener('click', ()=>copyWithTip(phone, copyPhoneBtn));
+    copyPhoneBtn?.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      copyWithTip(phone, copyPhoneBtn);
+    });
 
     const lineId = document.getElementById('lineId')?.textContent?.trim() || '';
     const copyLineBtn = document.getElementById('copyLine');
-    copyLineBtn?.addEventListener('click', ()=>copyWithTip(lineId, copyLineBtn));
+    copyLineBtn?.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      copyWithTip(lineId, copyLineBtn);
+    });
+
+    // ===== Make contact cards clickable =====
+    document.querySelectorAll('.contact-item').forEach(card=>{
+      const link = card.querySelector('a.contact-link');
+      const copyBtn = card.querySelector('.btn-copy');
+      if(link && !copyBtn){
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', ()=>link.click());
+      }
+    });
+    // Prevent button clicks from triggering card click
+    document.querySelectorAll('.btn-copy').forEach(btn=>{
+      btn.addEventListener('click', (e)=>e.stopPropagation());
+    });
 
     // ===== Back to top =====
     const fab = document.getElementById('backTop');
