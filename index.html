@@ -1,81 +1,304 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>นักศึกษาพอร์ตโฟลิโอ | GitHub Pages</title>
-  <meta name="description" content="เทมเพลตหน้าแรกสำหรับ GitHub Pages (นักศึกษา) — แก้ข้อความได้เอง 100%" />
+  <meta name="description" content="เทมเพลตหน้าแรกสำหรับ GitHub Pages (นักศึกษา) — ลูกเล่นสวยๆ พร้อมแอนิเมชัน สลับธีม อนิเมตตอนเลื่อน และปุ่มลอยกลับขึ้นบน" />
+  <meta name="color-scheme" content="dark light">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ===== CSS Variables: Dark & Light ===== */
     :root {
       --bg: #0b0c10;     /* พื้นหลังเข้ม */
+      --bg-soft: #0d1016; /* ไล่ชั้น */
       --card: #121318;   /* กล่อง */
       --text: #e8eef5;   /* ตัวอักษรหลัก */
       --muted: #9fb0c6;  /* ตัวอักษรรอง */
       --primary: #4f8cff;/* สีหลัก */
       --accent: #00d094; /* ไฮไลท์ */
       --border: #21222a; /* เส้นแบ่ง */
+      --ring: rgba(79, 140, 255, 0.5);
+      --glow: 0 0 0 rgba(79, 140, 255, 0);
+      --radius: 18px;
     }
     [data-theme="light"]{
       --bg: #f7f8fb;
+      --bg-soft: #eef1f7;
       --card: #ffffff;
       --text: #0e1726;
       --muted: #51607a;
       --primary: #265bff;
       --accent: #00a878;
       --border: #e7e9f1;
+      --ring: rgba(38, 91, 255, 0.25);
     }
+
+    /* ===== Base ===== */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:"Kanit",system-ui,-apple-system,"Inter",Segoe UI,Roboto;line-height:1.6;background:var(--bg);color:var(--text)}
+    body{
+      margin:0;
+      font-family:"Kanit",system-ui,-apple-system,"Inter",Segoe UI,Roboto;
+      line-height:1.6;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(79,140,255,.08), transparent 60%),
+                  radial-gradient(1000px 700px at 85% 10%, rgba(0,208,148,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      min-height:100dvh;
+    }
     .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    /* ===== Fancy Background Grid & Noise ===== */
+    .bg-grid:before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;
+      background: linear-gradient(var(--bg), var(--bg-soft));
+    }
+    .bg-grid:after{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image: linear-gradient(transparent 95%, rgba(127,127,127,.08) 95%),
+                        linear-gradient(90deg, transparent 95%, rgba(127,127,127,.08) 95%);
+      background-size: 22px 22px, 22px 22px;
+      -webkit-mask-image: radial-gradient(60% 50% at 50% 0%, black, transparent 80%);
+      mask-image: radial-gradient(60% 50% at 50% 0%, black, transparent 80%);
+      opacity:.5;
+    }
+
+    /* ===== Animated Gradient Orbs ===== */
+    .orb{
+      position:fixed;border-radius:50%;filter:blur(80px);opacity:.4;pointer-events:none;z-index:-1;
+      animation:float 20s ease-in-out infinite;
+    }
+    .orb-1{width:400px;height:400px;background:radial-gradient(circle, rgba(79,140,255,.6), transparent 70%);top:-10%;left:10%;animation-delay:0s}
+    .orb-2{width:350px;height:350px;background:radial-gradient(circle, rgba(0,208,148,.5), transparent 70%);top:30%;right:5%;animation-delay:-7s}
+    .orb-3{width:300px;height:300px;background:radial-gradient(circle, rgba(147,51,234,.4), transparent 70%);bottom:10%;left:20%;animation-delay:-14s}
+    @keyframes float{
+      0%,100%{transform:translate(0,0) scale(1)}
+      33%{transform:translate(30px,-30px) scale(1.1)}
+      66%{transform:translate(-20px,20px) scale(.9)}
+    }
+
+    /* ===== Particles ===== */
+    .particle{
+      position:fixed;width:4px;height:4px;background:var(--primary);border-radius:50%;
+      pointer-events:none;z-index:-1;opacity:.3;
+      animation:particle-float 15s linear infinite;
+    }
+    @keyframes particle-float{
+      0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0}
+      10%{opacity:.3}
+      90%{opacity:.3}
+      100%{transform:translateY(-100vh) translateX(100px) scale(1);opacity:0}
+    }
+
+    /* ===== Header / Nav ===== */
     header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    [data-theme="light"] header{background:rgba(255,255,255,.6)}
     .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-    .nav a{color:var(--text);text-decoration:none;opacity:.9}
-    .nav a:hover{opacity:1}
-    .menu{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 12px;border-radius:12px;cursor:pointer}
-    .btn:hover{border-color:var(--primary)}
+    .brand .dot{
+      width:10px;height:10px;border-radius:50%;background:var(--accent);
+      box-shadow:0 0 16px 4px rgba(0,208,148,.35);
+      animation:dot-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dot-pulse{
+      0%,100%{transform:scale(1);box-shadow:0 0 16px 4px rgba(0,208,148,.35)}
+      50%{transform:scale(1.2);box-shadow:0 0 24px 6px rgba(0,208,148,.6)}
+    }
+    .brand .logotype{letter-spacing:.3px}
+    .nav a{color:var(--text);text-decoration:none;opacity:.85;padding:8px 10px;border-radius:10px}
+    .nav a:hover{opacity:1;background:rgba(127,127,127,.08)}
+    .nav a.active{background:linear-gradient(90deg, rgba(79,140,255,.18), rgba(0,208,148,.18));outline:1px solid var(--border)}
+    .menu{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--border);background:var(--card);color:var(--text);
+      padding:8px 12px;border-radius:12px;cursor:pointer;position:relative;overflow:hidden;
+      transition:transform .2s ease, box-shadow .3s ease, border-color .3s ease, color .2s ease;
+    }
+    .btn:before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
+      transform:translateX(-100%);transition:transform .3s ease;
+    }
+    .btn:hover{
+      border-color:var(--primary);transform:translateY(-2px) scale(1.02);
+      box-shadow:0 8px 24px -12px var(--ring);color:var(--primary);
+    }
+    .btn:hover:before{transform:translateX(0)}
+
+    /* ===== Hero / Cards ===== */
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;margin-top:24px}
-    .hero .card{background:var(--card);padding:22px;border:1px solid var(--border);border-radius:18px}
+    .card{
+      background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 0%), color-mix(in oklab, var(--card), transparent 14%));
+      padding:18px;border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;
+      transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+      animation:card-float 6s ease-in-out infinite;
+    }
+    .card:nth-child(2n){animation-delay:-3s}
+    .card:nth-child(3n){animation-delay:-1.5s}
+    @keyframes card-float{
+      0%,100%{transform:translateY(0px)}
+      50%{transform:translateY(-8px)}
+    }
+    .card:before{
+      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
+      background:linear-gradient(120deg, rgba(79,140,255,.5), rgba(0,208,148,.4) 40%, transparent 60%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      mask-composite:exclude;
+      opacity:.25;transition:opacity .3s ease;
+    }
+    .card:after{
+      content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:conic-gradient(from 0deg at 50% 50%, transparent, rgba(79,140,255,.15), transparent 30%);
+      animation:card-rotate 8s linear infinite;opacity:0;transition:opacity .3s ease;
+    }
+    @keyframes card-rotate{
+      to{transform:rotate(360deg)}
+    }
+    .card:hover{
+      box-shadow:0 20px 40px -20px var(--ring), 0 1px 0 0 rgba(255,255,255,.04) inset;
+      transform:translateY(-6px) scale(1.02);animation-play-state:paused;
+    }
+    .card:hover:before{opacity:.7}
+    .card:hover:after{opacity:1}
+
     h1{font-size:36px;line-height:1.25;margin:0 0 8px}
     h2{font-size:28px;margin:0 0 12px}
     h3{font-size:20px;margin:0 0 10px}
     p.lead{font-size:18px;color:var(--muted);margin-top:4px}
+
+    /* Gradient text shimmer for name */
+    .shine{
+      background:linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+      background-size:200% 100%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;position:relative;
+      animation:gradient-shift 3s ease infinite;
+    }
+    @keyframes gradient-shift{
+      0%,100%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+    }
+    .shine:after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.8) 50%, transparent 70%);
+      transform:skewX(-20deg) translateX(-120%);
+      animation:shine 3s ease-in-out infinite;
+    }
+    @keyframes shine{to{transform:skewX(-20deg) translateX(120%)}}
+
     .grid{display:grid;gap:18px}
     .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{background:var(--card);padding:18px;border:1px solid var(--border);border-radius:16px}
-    .pill{display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:14px;color:var(--muted);margin:4px 6px 0 0}
-    .tag{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted)}
+
+    .pill{
+      display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;
+      font-size:14px;color:var(--muted);margin:4px 6px 0 0;position:relative;
+      transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .pill:hover{
+      transform:translateY(-3px) scale(1.05);
+      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
+      border-color:var(--primary);color:var(--text);
+      box-shadow:0 4px 12px -4px var(--ring);
+    }
+
+    .tag{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted);transition:background .2s, color .2s}
+    .tag:hover{background:rgba(127,127,127,.12);color:var(--text)}
+
     .section{padding:8px 0 28px}
     .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}
     .section-title .hash{color:var(--primary);font-weight:700}
     .list{display:grid;gap:10px}
     .list li{margin-left:20px}
     .row{display:flex;gap:14px;flex-wrap:wrap}
-    .kpi{padding:12px 14px;border:1px dashed var(--border);border-radius:12px;color:var(--muted)}
+    .kpi{padding:12px 14px;border:1px dashed var(--border);border-radius:12px;color:var(--muted);background:linear-gradient(180deg, transparent, rgba(127,127,127,.04))}
+
     .project{display:flex;flex-direction:column;gap:10px}
-    .project img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+    .project .thumb{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+    .project img{
+      width:100%;height:180px;object-fit:cover;display:block;transform:scale(1.02);
+      transition:transform .6s cubic-bezier(.34,1.56,.64,1), filter .4s ease;
+    }
+    .project .thumb:after{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(120% 60% at 50% 0%, rgba(0,0,0,.0), rgba(0,0,0,.25));
+      opacity:.2;transition:opacity .4s;
+    }
+    .project .thumb:before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(45deg, rgba(79,140,255,.3), rgba(0,208,148,.3));
+      opacity:0;transition:opacity .4s;mix-blend-mode:overlay;
+    }
+    .project:hover img{transform:scale(1.12) rotate(2deg);filter:brightness(1.1)}
+    .project:hover .thumb:after{opacity:.4}
+    .project:hover .thumb:before{opacity:1}
     .project a{color:var(--primary);text-decoration:none}
+
     .timeline{position:relative;padding-left:20px}
     .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
     .timeline .item{position:relative;padding-left:16px;margin-bottom:12px}
-    .timeline .item:before{content:"";position:absolute;left:-2px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    .timeline .item:before{content:"";position:absolute;left:-2px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%)}
+
     footer{border-top:1px solid var(--border);margin-top:24px}
     .muted{color:var(--muted)}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* ===== Scroll Reveal (initial state) ===== */
+    .reveal{
+      opacity:0;transform:translateY(30px) scale(.95);
+      transition:opacity .8s cubic-bezier(.34,1.56,.64,1), transform .8s cubic-bezier(.34,1.56,.64,1);
+    }
+    .reveal.show{opacity:1;transform:translateY(0) scale(1)}
+
+    /* ===== Back-To-Top FAB ===== */
+    .fab{
+      position:fixed;right:18px;bottom:18px;z-index:60;
+      border:1px solid var(--border);background:var(--card);color:var(--text);
+      padding:10px 14px;border-radius:999px;cursor:pointer;
+      box-shadow:0 10px 30px -18px var(--ring);
+      display:none;align-items:center;gap:8px;
+      transition:transform .3s ease, box-shadow .3s ease;
+      animation:fab-pulse 2s ease-in-out infinite;
+    }
+    @keyframes fab-pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+    }
+    .fab.show{display:flex}
+    .fab:hover{
+      transform:translateY(-4px) scale(1.1);
+      box-shadow:0 15px 40px -15px var(--ring);
+      animation-play-state:paused;
+    }
+
+    /* ===== Tooltip (for copy buttons) ===== */
+    .tip{position:relative}
+    .tip .tiptext{position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:6px 8px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
+    .tip.show .tiptext{opacity:1}
+
+    /* ===== Responsive ===== */
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
+
+    /* ===== Reduced motion ===== */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
+    }
   </style>
 </head>
-<body>
-  <header>
+<body class="bg-grid">
+  <!-- Animated Background Orbs -->
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+  
+  <a class="sr-only" href="#intro">ข้ามไปยังเนื้อหา</a>
+  <header></header>
     <div class="container nav">
-      <div class="brand"><span class="dot"></span><span>My Portfolio</span></div>
+      <div class="brand"><span class="dot" aria-hidden="true"></span><span class="logotype">My Portfolio</span></div>
       <nav class="menu" aria-label="Main">
         <a href="#intro">Intro</a>
         <a href="#skills">Skills</a>
@@ -83,37 +306,41 @@
         <a href="#education">Education</a>
         <a href="#achievements">Activities</a>
         <a href="#contact">Contact</a>
-        <button id="theme" class="btn" aria-label="Toggle theme">สลับธีม</button>
+        <button id="theme" class="btn" aria-label="Toggle theme">🌓 สลับธีม</button>
       </nav>
     </div>
   </header>
 
   <main class="container">
     <!-- 1. Introduction / Profile -->
-    <section id="intro" class="hero section">
+    <section id="intro" class="hero section reveal">
       <div class="card">
-        <h1>สวัสดีครับ/ค่ะ, ฉันชื่อ <span style="color:var(--primary)">[ชื่อ–นามสกุล]</span></h1>
-        <p class="lead">[สาขา/คณะ/มหาวิทยาลัย] — นักศึกษาปีที่ [X] สนใจ [AI / Web / Cybersecurity / Data Science / …]</p>
+        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span>&nbsp;(ตึ๊ง)</h1>
+        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span>&nbsp;(Tueng)</h2>
+        <p class="lead">สาขา: เทคโนโลยีสารสนเทศ <br>คณะ: วิทยาศาสตร์ <br>มหาวิทยาลัย: ราชภัฏอุดรธานี  <br>ชั้นปีที่ 3 <br>สนใจ [AI / Web / Cybersecurity]</p>
         <div class="row">
-          <span class="kpi">📍 จังหวัด: [ใส่จังหวัด]</span>
+          <span class="kpi">📍 จังหวัด: อุดรธานี</span>
           <span class="kpi">🎯 เป้าหมาย: [Frontend Dev / Data Analyst / etc.]</span>
-          <span class="kpi">📧 Email: you@example.com</span>
+          <span class="kpi">📧 Email: <span id="emailText">taksinonly@gmail.com</span>
+            <button class="btn tip" id="copyEmail" aria-label="คัดลอกอีเมล"><span>คัดลอก</span><span class="tiptext" role="status">คัดลอกแล้ว!</span></button>
+          </span>
         </div>
         <p class="muted">แก้ไขข้อความในวงเล็บ [ ] ตามข้อมูลของคุณได้เลย</p>
       </div>
       <div class="card" aria-label="Profile image">
         <!-- วางลิงก์รูปโปรไฟล์ของคุณแทน src ด้านล่าง -->
-        <img src="https://picsum.photos/600/600" alt="Profile" style="width:100%;border-radius:16px;border:1px solid var(--border)" />
+        <div class="thumb" style="border-radius:16px;overflow:hidden;border:1px solid var(--border)">
+          <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438096164514824293/unnamed.jpg?ex=6915a2ec&is=6914516c&hm=cb7a8ce0c78b19ba48bd504aa8fc8b35ad4ed6c5fb66e9c564ce854815f930a6&=&format=webp&width=960&height=960" alt="Profile" style="width:100%;display:block;aspect-ratio:1/1;object-fit:cover;transform:scale(1.02);transition:transform .5s ease, filter .35s ease" />
+        </div>
         <div class="row" style="margin-top:10px">
-          <a class="tag" href="https://github.com/yourname" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="tag" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="tag" href="#" target="_blank" rel="noreferrer">Portfolio</a>
+          <a class="tag" href="https://github.com/taksin105" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="tag" href="https://taksin105.github.io/" target="_blank" rel="noreferrer">Portfolio</a>
         </div>
       </div>
     </section>
 
     <!-- 2. Skills -->
-    <section id="skills" class="section">
+    <section id="skills" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ทักษะ (Skills)</h2></div>
       <div class="grid cols-2">
         <div class="card">
@@ -121,7 +348,7 @@
           <div class="row">
             <span class="pill">Python</span>
             <span class="pill">Java</span>
-            <span class="pill">C#</span>
+            <span class="pill">C++</span>
             <span class="pill">HTML/CSS/JS</span>
             <span class="pill">SQL</span>
             <span class="pill">Git / VS Code</span>
@@ -144,12 +371,12 @@
     </section>
 
     <!-- 3. Projects / Portfolio -->
-    <section id="projects" class="section">
+    <section id="projects" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ผลงานที่ผ่านมา (Projects / Portfolio)</h2></div>
       <div class="grid cols-3">
         <!-- การ์ด 1: ตัวอย่างโครงการเว็บไซต์ -->
         <article class="card project">
-          <img src="https://picsum.photos/seed/site/800/450" alt="Screenshot" />
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/site/800/450" alt="Screenshot" /></div>
           <h3>ระบบจองห้องประชุมออนไลน์</h3>
           <p class="muted">เว็บแอปสำหรับจองห้อง • HTML/CSS/JS + Firebase • มีระบบล็อกอินและแดชบอร์ด</p>
           <div class="row">
@@ -159,7 +386,7 @@
         </article>
         <!-- การ์ด 2: โครงการ Data/AI -->
         <article class="card project">
-          <img src="https://picsum.photos/seed/data/800/450" alt="Screenshot" />
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/data/800/450" alt="Screenshot" /></div>
           <h3>AI ทำนายโรคเบาหวาน</h3>
           <p class="muted">สรุปผลการเทรนโมเดลด้วย scikit‑learn • Accuracy 0.87 • มีแดชบอร์ด Power BI</p>
           <div class="row">
@@ -169,7 +396,7 @@
         </article>
         <!-- การ์ด 3: โครงการอื่น ๆ -->
         <article class="card project">
-          <img src="https://picsum.photos/seed/viz/800/450" alt="Screenshot" />
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/viz/800/450" alt="Screenshot" /></div>
           <h3>Dashboard วิเคราะห์ยอดร้านกาแฟ</h3>
           <p class="muted">Power BI / Data Visualization • KPI ยอดขาย, เมนูยอดนิยม, เวลาเร่งด่วน</p>
           <div class="row">
@@ -181,22 +408,30 @@
     </section>
 
     <!-- 4. Education -->
-    <section id="education" class="section">
+    <section id="education" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>การศึกษา (Education)</h2></div>
       <div class="card timeline">
         <div class="item">
           <h3>คณะวิทยาศาสตร์ สาขาวิทยาการคอมพิวเตอร์ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
+          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย 3.58 • กิจกรรม: ชมรม/แข่งขัน</p>
+        </div>
+        <div class="item">
+          <h3>ระดับ ปวช — วิทยาลัยเทคนิคอุดร</h3>
           <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
         </div>
         <div class="item">
-          <h3>ระดับมัธยมปลาย — โรงเรียน [ชื่อโรงเรียน]</h3>
-          <p class="muted">แผนการเรียน [วิทย์‑คณิต/ศิลป์ภาษา] • รางวัล/ผลงานเด่น</p>
+          <h3>ระดับมัธยมต้น — โรงเรียนบ้านหมากแข้ง</h3>
+          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
+        </div>
+        <div class="item">
+          <h3>ระดับประถม — โรงเรียนทรงธรรมวิทยา</h3>
+          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
         </div>
       </div>
     </section>
 
     <!-- 5. Activities & Achievements -->
-    <section id="achievements" class="section">
+    <section id="achievements" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>กิจกรรมและผลงานอื่น ๆ (Activities / Achievements)</h2></div>
       <div class="grid cols-2">
         <div class="card">
@@ -219,18 +454,22 @@
     </section>
 
     <!-- 6. Contact -->
-    <section id="contact" class="section">
+    <section id="contact" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ติดต่อ (Contact)</h2></div>
       <div class="card">
-        <p>📧 Email: <a href="mailto:you@example.com">you@example.com</a></p>
-        <p>🌐 GitHub: <a href="https://github.com/yourname" target="_blank" rel="noreferrer">github.com/yourname</a></p>
-        <p>🔗 LinkedIn / Facebook / Portfolio: <span class="muted">(ใส่ลิงก์ของคุณที่นี่)</span></p>
-        <p>📍 ที่อยู่จังหวัด: <span class="muted">(ไม่จำเป็นต้องละเอียด)</span></p>
+        <p>📧 Email: <a href="mailto:taksinonly@gmail.com">taksinonly@gmail.com</a></p>
+        <p>📞 Phone: <a href="tel:0918483500">091-848-3500</a>
+          <button class="btn tip" id="copyPhone" aria-label="คัดลอกเบอร์">คัดลอก<span class="tiptext" role="status">คัดลอกแล้ว!</span></button>
+        </p>
+        <p>🌐 GitHub: <a href="https://github.com/taksin105" target="_blank" rel="noreferrer">https://github.com/taksin105</a></p>
+        <p>🔗 Facebook: <a href="https://www.facebook.com/tueng.cintn/" target="_blank" rel="noreferrer">https://www.facebook.com/tueng.cintn</a></p>
+        <p>📱 Line: <span id="lineId">0918483500</span> <button class="btn tip" id="copyLine" aria-label="คัดลอกไลน์">คัดลอก<span class="tiptext" role="status">คัดลอกแล้ว!</span></button></p>
+        <p>📍 ที่อยู่จังหวัด: <span class="muted">126 หมู่ 10 ต.โนนสูง อ.เมือง จ.อุดรธานี 41330</span></p>
       </div>
     </section>
 
     <!-- 7. Career Interest / Goal -->
-    <section id="goals" class="section">
+    <section id="goals" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>องค์ประกอบเสริม / เป้าหมายในอนาคต</h2></div>
       <div class="card">
         <p>สนใจงานด้าน: <strong>[Frontend / Backend / Full‑stack / Data Analyst / ML Engineer / Cybersecurity]</strong></p>
@@ -239,25 +478,100 @@
     </section>
   </main>
 
-  <footer class="container">
+  <footer class="container reveal">
     <div class="row" style="align-items:center;justify-content:space-between">
       <p class="muted">© <span id="year"></span> • สร้างด้วย GitHub Pages</p>
       <a class="tag" href="#intro">กลับขึ้นบน ↑</a>
     </div>
   </footer>
 
+  <!-- Floating Back-to-Top Button -->
+  <button id="backTop" class="fab" aria-label="กลับขึ้นบน">↑ กลับขึ้นบน</button>
+
   <script>
-    // Toggle light/dark theme & remember choice
+    // ===== Theme: set initial from localStorage or prefers-color-scheme =====
+    const root = document.documentElement;
     const btn = document.getElementById('theme');
-    const saved = localStorage.getItem('theme');
-    if(saved){ document.documentElement.setAttribute('data-theme', saved); }
-    btn.addEventListener('click', () => {
-      const curr = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', curr);
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = savedTheme || (prefersDark ? 'dark' : 'light');
+    root.setAttribute('data-theme', initial);
+
+    function toggleTheme(){
+      const curr = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', curr);
       localStorage.setItem('theme', curr);
-    });
-    // Current year
+    }
+    btn.addEventListener('click', toggleTheme);
+    // shortcut key: press "t" to toggle theme
+    document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='t' && !/input|textarea/i.test(document.activeElement.tagName)){ toggleTheme(); }});
+
+    // ===== Active nav on scroll =====
+    const sections = [...document.querySelectorAll('main section')];
+    const menuLinks = [...document.querySelectorAll('nav.menu a')];
+    const byId = id => document.querySelector(`a[href="#${id}"]`);
+    const observerNav = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          menuLinks.forEach(a=>a.classList.remove('active'));
+          const link = byId(entry.target.id); if(link) link.classList.add('active');
+        }
+      })
+    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0.01});
+    sections.forEach(sec=>observerNav.observe(sec));
+
+    // ===== Scroll reveal =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }});
+    }, {threshold: .12});
+    revealEls.forEach(el=>ro.observe(el));
+
+    // ===== Copy buttons with tooltip =====
+    function copyWithTip(text, btn){
+      navigator.clipboard.writeText(text).then(()=>{
+        btn.classList.add('show');
+        setTimeout(()=>btn.classList.remove('show'), 1000);
+      }).catch(()=>{});
+    }
+    const emailText = document.getElementById('emailText')?.textContent?.trim() || '';
+    const copyEmailBtn = document.getElementById('copyEmail');
+    copyEmailBtn?.addEventListener('click', ()=>copyWithTip(emailText, copyEmailBtn));
+
+    const phone = '0918483500';
+    const copyPhoneBtn = document.getElementById('copyPhone');
+    copyPhoneBtn?.addEventListener('click', ()=>copyWithTip(phone, copyPhoneBtn));
+
+    const lineId = document.getElementById('lineId')?.textContent?.trim() || '';
+    const copyLineBtn = document.getElementById('copyLine');
+    copyLineBtn?.addEventListener('click', ()=>copyWithTip(lineId, copyLineBtn));
+
+    // ===== Back to top =====
+    const fab = document.getElementById('backTop');
+    fab.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+    const showFab = ()=>{ fab.classList.toggle('show', window.scrollY > 550); };
+    showFab();
+    window.addEventListener('scroll', showFab, {passive:true});
+
+    // ===== Current year =====
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Create floating particles =====
+    function createParticles(){
+      const count = 15;
+      for(let i=0; i<count; i++){
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        document.body.appendChild(particle);
+      }
+    }
+    // Only create particles if user doesn't prefer reduced motion
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      createParticles();
+    }
   </script>
 </body>
 </html>
