@@ -116,11 +116,13 @@
       border:1px solid var(--border);background:var(--card);color:var(--text);
       padding:8px 12px;border-radius:12px;cursor:pointer;position:relative;overflow:hidden;
       transition:transform .2s ease, box-shadow .3s ease, border-color .3s ease, color .2s ease;
+      z-index:10;
     }
     .btn:before{
       content:"";position:absolute;inset:0;
       background:linear-gradient(135deg, rgba(79,140,255,.2), rgba(0,208,148,.2));
       transform:translateX(-100%);transition:transform .3s ease;
+      z-index:-1;
     }
     .btn:hover{
       border-color:var(--primary);transform:translateY(-2px) scale(1.02);
@@ -155,7 +157,9 @@
       content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
       background:conic-gradient(from 0deg at 50% 50%, transparent, rgba(79,140,255,.15), transparent 30%);
       animation:card-rotate 8s linear infinite;opacity:0;transition:opacity .3s ease;
+      pointer-events:none;z-index:0;
     }
+    .card > *{position:relative;z-index:1}
     @keyframes card-rotate{
       to{transform:rotate(360deg)}
     }
@@ -206,7 +210,11 @@
       box-shadow:0 4px 12px -4px var(--ring);
     }
 
-    .tag{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted);transition:background .2s, color .2s}
+    .tag{
+      font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;
+      color:var(--muted);transition:background .2s, color .2s;
+      position:relative;z-index:10;
+    }
     .tag:hover{background:rgba(127,127,127,.12);color:var(--text)}
 
     .section{padding:8px 0 28px}
@@ -236,7 +244,7 @@
     .project:hover img{transform:scale(1.12) rotate(2deg);filter:brightness(1.1)}
     .project:hover .thumb:after{opacity:.4}
     .project:hover .thumb:before{opacity:1}
-    .project a{color:var(--primary);text-decoration:none}
+    .project a{color:var(--primary);text-decoration:none;position:relative;z-index:10}
 
     .timeline{position:relative;padding-left:20px}
     .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
@@ -296,7 +304,7 @@
   <div class="orb orb-3" aria-hidden="true"></div>
   
   <a class="sr-only" href="#intro">ข้ามไปยังเนื้อหา</a>
-  <header></header>
+  <header>
     <div class="container nav">
       <div class="brand"><span class="dot" aria-hidden="true"></span><span class="logotype">My Portfolio</span></div>
       <nav class="menu" aria-label="Main">
@@ -304,6 +312,7 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
+        <a href="#certificates">Certificates</a>
         <a href="#achievements">Activities</a>
         <a href="#contact">Contact</a>
         <button id="theme" class="btn" aria-label="Toggle theme">🌓 สลับธีม</button>
@@ -430,7 +439,66 @@
       </div>
     </section>
 
-    <!-- 5. Activities & Achievements -->
+    <!-- 5. Certificates -->
+    <section id="certificates" class="section reveal">
+      <div class="section-title"><span class="hash">#</span><h2>ใบประกาศนียบัตร (Certificates)</h2></div>
+      
+      <!-- Certificate Images Gallery -->
+      <div class="grid cols-2" style="margin-bottom:24px">
+        <article class="card project">
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438121476434952243/492504267_2343236702710013_667948144821147252_n.png?ex=6915ba7e&is=691468fe&hm=dce4f8f1cfd199816eca18974fb562f1116d0a0700e7ad7ccaac7cc1ed6815f6&=&format=webp&quality=lossless" alt="Certificate 1" style="height:auto;object-fit:contain" />
+          </div>
+          <h3>ใบประกาศนียบัตร 1</h3>
+          <p class="muted">คลิกเพื่อดูรายละเอียด</p>
+        </article>
+        <article class="card project">
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438121518411415653/492502959_2343236799376670_6410063970840891474_n.png?ex=6915ba88&is=69146908&hm=164a77767741d286fe867be2b91a452c9007e1c3c0fe6914f260efc90bf9f757&=&format=webp&quality=lossless" alt="Certificate 2" style="height:auto;object-fit:contain" />
+          </div>
+          <h3>ใบประกาศนียบัตร 2</h3>
+          <p class="muted">คลิกเพื่อดูรายละเอียด</p>
+        </article>
+      </div>
+
+      <!-- Certificate List -->
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>📜 AI & Machine Learning</h3>
+          <ul class="list">
+            <li>Microsoft AI Fundamentals (AI-900)</li>
+            <li>Google AI Essentials Certificate</li>
+            <li>Deep Learning Specialization - Coursera</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>💻 Web Development & Programming</h3>
+          <ul class="list">
+            <li>Responsive Web Design - freeCodeCamp</li>
+            <li>JavaScript Algorithms and Data Structures</li>
+            <li>Full Stack Web Development Bootcamp</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Data Science & Analytics</h3>
+          <ul class="list">
+            <li>Google Data Analytics Professional Certificate</li>
+            <li>Power BI Data Analyst Associate</li>
+            <li>Python for Data Science - IBM</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🔐 Cybersecurity & Cloud</h3>
+          <ul class="list">
+            <li>CompTIA Security+ Certification</li>
+            <li>AWS Cloud Practitioner</li>
+            <li>Ethical Hacking Essentials</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Activities & Achievements -->
     <section id="achievements" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>กิจกรรมและผลงานอื่น ๆ (Activities / Achievements)</h2></div>
       <div class="grid cols-2">
@@ -453,7 +521,7 @@
       </div>
     </section>
 
-    <!-- 6. Contact -->
+    <!-- 7. Contact -->
     <section id="contact" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ติดต่อ (Contact)</h2></div>
       <div class="card">
@@ -468,7 +536,7 @@
       </div>
     </section>
 
-    <!-- 7. Career Interest / Goal -->
+    <!-- 8. Career Interest / Goal -->
     <section id="goals" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>องค์ประกอบเสริม / เป้าหมายในอนาคต</h2></div>
       <div class="card">
