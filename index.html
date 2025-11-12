@@ -38,7 +38,7 @@
 
     /* ===== Base ===== */
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
     body{
       margin:0;
       font-family:"Kanit",system-ui,-apple-system,"Inter",Segoe UI,Roboto;
@@ -288,6 +288,19 @@
     .tip .tiptext{position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:6px 8px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
     .tip.show .tiptext{opacity:1}
 
+    /* ===== Image Slider ===== */
+    .slider{position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--border)}
+    .slider-wrapper{display:flex;transition:transform .5s ease-in-out}
+    .slider-wrapper img{width:100%;flex-shrink:0;display:block;object-fit:cover;height:400px}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.2);padding:12px 16px;cursor:pointer;border-radius:8px;z-index:10;transition:background .3s ease, transform .2s ease;backdrop-filter:blur(8px)}
+    .slider-btn:hover{background:rgba(0,0,0,.8);transform:translateY(-50%) scale(1.1)}
+    .slider-btn.prev{left:12px}
+    .slider-btn.next{right:12px}
+    .slider-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+    .slider-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s ease, transform .2s ease}
+    .slider-dot.active{background:var(--primary);transform:scale(1.3)}
+    .slider-dot:hover{background:var(--accent)}
+
     /* ===== Responsive ===== */
     @media (max-width:900px){.hero{grid-template-columns:1fr}}
 
@@ -324,7 +337,7 @@
     <!-- 1. Introduction / Profile -->
     <section id="intro" class="hero section reveal">
       <div class="card">
-        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span>&nbsp;(ตึ๊ง)</h1>
+        <h1>สวัสดีครับผม <br><span class="shine">ทักษิณ นิสภวาณิชย์</span>&nbsp;(ตึ๊ง)</h1>
         <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span>&nbsp;(Tueng)</h2>
         <p class="lead">สาขา: เทคโนโลยีสารสนเทศ <br>คณะ: วิทยาศาสตร์ <br>มหาวิทยาลัย: ราชภัฏอุดรธานี  <br>ชั้นปีที่ 3 <br>สนใจ [AI / Web / Cybersecurity]</p>
         <div class="row">
@@ -334,7 +347,7 @@
             <button class="btn tip" id="copyEmail" aria-label="คัดลอกอีเมล"><span>คัดลอก</span><span class="tiptext" role="status">คัดลอกแล้ว!</span></button>
           </span>
         </div>
-        <p class="muted">แก้ไขข้อความในวงเล็บ [ ] ตามข้อมูลของคุณได้เลย</p>
+        <p class="muted">...</p>
       </div>
       <div class="card" aria-label="Profile image">
         <!-- วางลิงก์รูปโปรไฟล์ของคุณแทน src ด้านล่าง -->
@@ -359,18 +372,16 @@
             <span class="pill">Java</span>
             <span class="pill">C++</span>
             <span class="pill">HTML/CSS/JS</span>
+            <span class="pill">PHP</span>
             <span class="pill">SQL</span>
             <span class="pill">Git / VS Code</span>
             <span class="pill">Figma</span>
+            <span class="pill">Photoshop</span>
           </div>
         </div>
         <div class="card">
-          <h3>AI • Data • Soft Skills</h3>
+          <h3>Soft Skills</h3>
           <div class="row">
-            <span class="pill">TensorFlow</span>
-            <span class="pill">scikit‑learn</span>
-            <span class="pill">Power BI</span>
-            <span class="pill">DataViz</span>
             <span class="pill">การสื่อสาร</span>
             <span class="pill">ทำงานเป็นทีม</span>
             <span class="pill">แก้ปัญหา</span>
@@ -383,34 +394,42 @@
     <section id="projects" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ผลงานที่ผ่านมา (Projects / Portfolio)</h2></div>
       <div class="grid cols-3">
-        <!-- การ์ด 1: ตัวอย่างโครงการเว็บไซต์ -->
+        <!-- การ์ด 1: ShoppingCart -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/site/800/450" alt="Screenshot" /></div>
-          <h3>ระบบจองห้องประชุมออนไลน์</h3>
-          <p class="muted">เว็บแอปสำหรับจองห้อง • HTML/CSS/JS + Firebase • มีระบบล็อกอินและแดชบอร์ด</p>
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/cart/800/450" alt="ShoppingCart Screenshot" /></div>
+          <h3>🛒 ShoppingCart</h3>
+          <p class="muted">ระบบตะกร้าสินค้าออนไลน์ • เพิ่ม/ลบสินค้า จัดการรายการ • HTML/CSS/JavaScript</p>
           <div class="row">
-            <a href="https://github.com/yourname/project-1" target="_blank" rel="noreferrer">GitHub Repo →</a>
-            <a href="#" target="_blank" rel="noreferrer">Demo (ถ้ามี) →</a>
+            <a href="https://github.com/taksin105/ShoppingCart" target="_blank" rel="noreferrer">GitHub Repo →</a>
           </div>
         </article>
-        <!-- การ์ด 2: โครงการ Data/AI -->
+        <!-- การ์ด 2: ระบบเช่ารถยนต์ออนไลน์ -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/data/800/450" alt="Screenshot" /></div>
-          <h3>AI ทำนายโรคเบาหวาน</h3>
-          <p class="muted">สรุปผลการเทรนโมเดลด้วย scikit‑learn • Accuracy 0.87 • มีแดชบอร์ด Power BI</p>
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/carrent/800/450" alt="CarRent Screenshot" /></div>
+          <h3>🚗 ระบบเช่ารถยนต์ออนไลน์</h3>
+          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถ • HTML/CSS/PHP • ระบบจองและจัดการข้อมูลรถยนต์</p>
           <div class="row">
-            <a href="https://github.com/yourname/project-2" target="_blank" rel="noreferrer">GitHub Repo →</a>
-            <a href="#" target="_blank" rel="noreferrer">รายงาน/สไลด์ →</a>
+            <a href="https://github.com/taksin105/CarRent" target="_blank" rel="noreferrer">GitHub Repo →</a>
           </div>
         </article>
-        <!-- การ์ด 3: โครงการอื่น ๆ -->
+        <!-- การ์ด 3: UX/UI Design E-commerce App -->
         <article class="card project">
-          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/viz/800/450" alt="Screenshot" /></div>
-          <h3>Dashboard วิเคราะห์ยอดร้านกาแฟ</h3>
-          <p class="muted">Power BI / Data Visualization • KPI ยอดขาย, เมนูยอดนิยม, เวลาเร่งด่วน</p>
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/uxui/800/450" alt="E-commerce UX/UI Design" /></div>
+          <h3>🎨 ออกแบบ UX/UI แอป E-commerce</h3>
+          <p class="muted">ออกแบบส่วนติดต่อผู้ใช้และประสบการณ์ผู้ใช้ • Figma • UI Design, Wireframe, Prototype</p>
           <div class="row">
-            <a href="https://github.com/yourname/project-3" target="_blank" rel="noreferrer">GitHub Repo →</a>
-            <a href="#" target="_blank" rel="noreferrer">ภาพ Screenshot →</a>
+            <a href="https://www.figma.com/design/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&p=f&t=55swZ9OqjyWAwzol-0" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
+            <a href="https://www.figma.com/proto/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">Prototype →</a>
+          </div>
+        </article>
+        <!-- การ์ด 4: UX/UI Design Movie App -->
+        <article class="card project">
+          <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/movie/800/450" alt="Movie App UX/UI Design" /></div>
+          <h3>🎬 ออกแบบ UX/UI แอปดูหนัง</h3>
+          <p class="muted">ออกแบบแอปพลิเคชันสำหรับดูหนังออนไลน์ • Figma • Modern UI, User Experience Design</p>
+          <div class="row">
+            <a href="https://www.figma.com/design/5u0W6lUlA1FC1I3ztEZlXr/Untitled?t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
+            <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
           </div>
         </article>
       </div>
@@ -421,20 +440,20 @@
       <div class="section-title"><span class="hash">#</span><h2>การศึกษา (Education)</h2></div>
       <div class="card timeline">
         <div class="item">
-          <h3>คณะวิทยาศาสตร์ สาขาวิทยาการคอมพิวเตอร์ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
-          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย 3.58 • กิจกรรม: ชมรม/แข่งขัน</p>
+          <h3>ปัจจุบันกำลังศึกษาที่ สาขาเทคโนโลยีสารสนเทศ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
+          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย 3.58 </p>
         </div>
         <div class="item">
-          <h3>ระดับ ปวช — วิทยาลัยเทคนิคอุดร</h3>
-          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
+          <h3>ระดับ ปวช. — วิทยาลัยเทคนิคอุดรธานี</h3>
+          <p class="muted">2563 • เกรดเฉลี่ย 3.63 </p>
         </div>
         <div class="item">
           <h3>ระดับมัธยมต้น — โรงเรียนบ้านหมากแข้ง</h3>
-          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
+          <p class="muted">2560 • เกรดเฉลี่ย 3.34 </p>
         </div>
         <div class="item">
           <h3>ระดับประถม — โรงเรียนทรงธรรมวิทยา</h3>
-          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
+          <p class="muted">2554 • เกรดเฉลี่ย 2.96 </p>
         </div>
       </div>
     </section>
@@ -449,70 +468,71 @@
           <div class="thumb">
             <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438121476434952243/492504267_2343236702710013_667948144821147252_n.png?ex=6915ba7e&is=691468fe&hm=dce4f8f1cfd199816eca18974fb562f1116d0a0700e7ad7ccaac7cc1ed6815f6&=&format=webp&quality=lossless" alt="Certificate 1" style="height:auto;object-fit:contain" />
           </div>
-          <h3>ใบประกาศนียบัตร 1</h3>
-          <p class="muted">คลิกเพื่อดูรายละเอียด</p>
+          <h3>ใบรับรองการเข้าร่วมโครงการ</h3>
+          <p class="muted">โครงการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ • เข้าร่วมกิจกรรมและฝึกอบรมเชิงปฏิบัติการ • ได้รับความรู้และประสบการณ์ในการทำงานเป็นทีม</p>
         </article>
         <article class="card project">
           <div class="thumb">
             <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438121518411415653/492502959_2343236799376670_6410063970840891474_n.png?ex=6915ba88&is=69146908&hm=164a77767741d286fe867be2b91a452c9007e1c3c0fe6914f260efc90bf9f757&=&format=webp&quality=lossless" alt="Certificate 2" style="height:auto;object-fit:contain" />
           </div>
-          <h3>ใบประกาศนียบัตร 2</h3>
-          <p class="muted">คลิกเพื่อดูรายละเอียด</p>
+          <h3>ใบประกาศนียบัตรการอบรม</h3>
+          <p class="muted">หลักสูตรการพัฒนาซอฟต์แวร์และการเขียนโปรแกรม • เรียนรู้เทคนิคและเครื่องมือสมัยใหม่ • สามารถนำไปประยุกต์ใช้ในโครงงานจริง</p>
         </article>
       </div>
 
-      <!-- Certificate List -->
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>📜 AI & Machine Learning</h3>
-          <ul class="list">
-            <li>Microsoft AI Fundamentals (AI-900)</li>
-            <li>Google AI Essentials Certificate</li>
-            <li>Deep Learning Specialization - Coursera</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>💻 Web Development & Programming</h3>
-          <ul class="list">
-            <li>Responsive Web Design - freeCodeCamp</li>
-            <li>JavaScript Algorithms and Data Structures</li>
-            <li>Full Stack Web Development Bootcamp</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>📊 Data Science & Analytics</h3>
-          <ul class="list">
-            <li>Google Data Analytics Professional Certificate</li>
-            <li>Power BI Data Analyst Associate</li>
-            <li>Python for Data Science - IBM</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>🔐 Cybersecurity & Cloud</h3>
-          <ul class="list">
-            <li>CompTIA Security+ Certification</li>
-            <li>AWS Cloud Practitioner</li>
-            <li>Ethical Hacking Essentials</li>
-          </ul>
-        </div>
-      </div>
+
     </section>
 
     <!-- 6. Activities & Achievements -->
     <section id="achievements" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>กิจกรรมและผลงานอื่น ๆ (Activities / Achievements)</h2></div>
-      <div class="grid cols-2">
+      
+      <!-- Featured Award: Christmas Design Contest -->
+      <article class="card project" style="margin-bottom:24px">
+        <div class="grid cols-2" style="gap:10px">
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438157699731951727/AJQWtBN01lTBpLT3xq9mU_ipCnp6hwUX-Hgm3qtQuxstn3-ktwiXTdULYKOnxmd_ZQ4hn99W6mcc25UkMEBEpUqAG5FeQpxDzDeJcrZY3m2GYezx0sQw1920-h911.png?ex=6915dc3b&is=69148abb&hm=7d04a6da3cb1a4405396b346e970a53cfa236a057aa0cafb63a9ded8bed06fe6&=&format=webp&quality=lossless&width=1211&height=856" alt="รางวัลประกวดผลงานวันคริสต์มาส - ภาพที่ 1" style="height:auto;object-fit:cover" />
+          </div>
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438157700239200266/AJQWtBNqU4o2M7jEx5X9b7Q3v9oaDonbAvfoFv5fcngUcJ3AnQLMf3p7bw11y0mRjUGJ09keh_n5U-C0asqSJw8jsojugtRv5pmd_iwKFUfaFo6ARmUw1920-h911.png?ex=6915dc3b&is=69148abb&hm=9e10d1ec05cf16649545a414d283e81b11d148b5c19170509fa3d9918d4f2441&=&format=webp&quality=lossless&width=1211&height=856" alt="รางวัลประกวดผลงานวันคริสต์มาส - ภาพที่ 2" style="height:auto;object-fit:cover" />
+          </div>
+        </div>
+        <h3>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ วิทยาลัยเทคนิคอุดรธานี</h3>
+        <p class="muted">ออกแบบด้วยโปรแกรม Adobe Photoshop • ผลงานได้รับรางวัลชนะเลิศอันดับ 1 • แสดงความคิดสร้างสรรค์และทักษะการออกแบบกราฟิก</p>
+      </article>
+
+      <!-- Featured Activities Gallery -->
+      <div class="grid cols-2" style="margin-bottom:24px">
+        <article class="card project">
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438140268783206430/IMG_0382.jpg?ex=6915cbff&is=69147a7f&hm=ea6ac3a2f7c7f484af72865c88bb69ac5fddc24d7c0be3388f45c69c1aa7715e&=&format=webp&width=1141&height=856" alt="กิจกรรมจิตอาสาส่งเสริมการเรียนรู้เรื่องการจัดการขยะ" style="height:auto;object-fit:cover" />
+          </div>
+          <h3>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ"</h3>
+          <p class="muted">เข้าร่วมกิจกรรมจิตอาสาเพื่อส่งเสริมความรู้และความเข้าใจเกี่ยวกับการจัดการขยะอย่างถูกต้อง • สร้างจิตสำนึกด้านสิ่งแวดล้อมให้กับชุมชน • ร่วมกันสร้างสังคมที่ยั่งยืน</p>
+        </article>
+        
+        <article class="card project">
+          <div class="thumb">
+            <img loading="lazy" src="https://media.discordapp.net/attachments/1039885622548107325/1438151000090349648/IMG_0400.JPG?ex=6915d5fd&is=6914847d&hm=4dc05cbd90c49317e976fec72bbf880ae415678b3b9ef97f44bc880ad9cd5cfd&=&format=webp&width=1280&height=960" alt="โครงการค่ายวิทย์น้อย AI เพื่อสิ่งแวดล้อม" style="height:auto;object-fit:cover" />
+          </div>
+          <h3>🤖 โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</h3>
+          <p class="muted">เข้าร่วมโครงการค่ายวิทย์น้อยเพื่อส่งเสริมการเรียนรู้เทคโนโลยี AI และการประยุกต์ใช้เพื่อแก้ปัญหาสิ่งแวดล้อม • ถ่ายทอดความรู้ให้กับเยาวชน • สร้างแรงบันดาลใจให้รุ่นน้อง</p>
+        </article>
+      </div>
+
+      <div class="grid cols-2"></div>
         <div class="card">
           <h3>กิจกรรม</h3>
           <ul class="list">
-            <li>ผู้เข้าร่วมอบรม “AI for Beginners by Microsoft”</li>
-            <li>เข้าร่วมแข่งขัน UDRU Hackathon 2025</li>
             <li>อาสาพัฒนาชุมชน/งานมหาวิทยาลัย</li>
+            <li>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ"</li>
+            <li>🤖 โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</li>
           </ul>
         </div>
         <div class="card">
           <h3>รางวัล/ความสำเร็จ</h3>
           <ul class="list">
+            <li>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ (Photoshop)</li>
             <li>รางวัลชนะเลิศโครงงานด้าน IoT</li>
             <li>ผลงานได้รับเลือกแสดงในนิทรรศการ</li>
             <li>ใบประกาศนียบัตร/ทุนการศึกษา</li>
@@ -640,6 +660,45 @@
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       createParticles();
     }
+
+    // ===== Image Slider =====
+    let currentSlide = 0;
+    const sliderWrapper = document.getElementById('sliderWrapper');
+    const slides = sliderWrapper?.querySelectorAll('img') || [];
+    const totalSlides = slides.length;
+    const dotsContainer = document.getElementById('sliderDots');
+
+    // Create dots
+    for(let i = 0; i < totalSlides; i++){
+      const dot = document.createElement('span');
+      dot.className = 'slider-dot';
+      if(i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlider(){
+      sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+      const dots = dotsContainer.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function moveSlide(direction){
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    function goToSlide(index){
+      currentSlide = index;
+      updateSlider();
+    }
+
+    // Auto slide every 5 seconds
+    setInterval(() => {
+      moveSlide(1);
+    }, 5000);
   </script>
 </body>
 </html>
