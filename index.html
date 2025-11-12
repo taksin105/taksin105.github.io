@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>นักศึกษาพอร์ตโฟลิโอ | GitHub Pages</title>
+  <meta name="description" content="เทมเพลตหน้าแรกสำหรับ GitHub Pages (นักศึกษา) — แก้ข้อความได้เอง 100%" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;     /* พื้นหลังเข้ม */
+      --card: #121318;   /* กล่อง */
+      --text: #e8eef5;   /* ตัวอักษรหลัก */
+      --muted: #9fb0c6;  /* ตัวอักษรรอง */
+      --primary: #4f8cff;/* สีหลัก */
+      --accent: #00d094; /* ไฮไลท์ */
+      --border: #21222a; /* เส้นแบ่ง */
+    }
+    [data-theme="light"]{
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #0e1726;
+      --muted: #51607a;
+      --primary: #265bff;
+      --accent: #00a878;
+      --border: #e7e9f1;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Kanit",system-ui,-apple-system,"Inter",Segoe UI,Roboto;line-height:1.6;background:var(--bg);color:var(--text)}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    .nav a{color:var(--text);text-decoration:none;opacity:.9}
+    .nav a:hover{opacity:1}
+    .menu{display:flex;gap:16px;flex-wrap:wrap}
+    .btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 12px;border-radius:12px;cursor:pointer}
+    .btn:hover{border-color:var(--primary)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;margin-top:24px}
+    .hero .card{background:var(--card);padding:22px;border:1px solid var(--border);border-radius:18px}
+    h1{font-size:36px;line-height:1.25;margin:0 0 8px}
+    h2{font-size:28px;margin:0 0 12px}
+    h3{font-size:20px;margin:0 0 10px}
+    p.lead{font-size:18px;color:var(--muted);margin-top:4px}
+    .grid{display:grid;gap:18px}
+    .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:var(--card);padding:18px;border:1px solid var(--border);border-radius:16px}
+    .pill{display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:14px;color:var(--muted);margin:4px 6px 0 0}
+    .tag{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted)}
+    .section{padding:8px 0 28px}
+    .section-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .section-title .hash{color:var(--primary);font-weight:700}
+    .list{display:grid;gap:10px}
+    .list li{margin-left:20px}
+    .row{display:flex;gap:14px;flex-wrap:wrap}
+    .kpi{padding:12px 14px;border:1px dashed var(--border);border-radius:12px;color:var(--muted)}
+    .project{display:flex;flex-direction:column;gap:10px}
+    .project img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+    .project a{color:var(--primary);text-decoration:none}
+    .timeline{position:relative;padding-left:20px}
+    .timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
+    .timeline .item{position:relative;padding-left:16px;margin-bottom:12px}
+    .timeline .item:before{content:"";position:absolute;left:-2px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    footer{border-top:1px solid var(--border);margin-top:24px}
+    .muted{color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span><span>My Portfolio</span></div>
+      <nav class="menu" aria-label="Main">
+        <a href="#intro">Intro</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#achievements">Activities</a>
+        <a href="#contact">Contact</a>
+        <button id="theme" class="btn" aria-label="Toggle theme">สลับธีม</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 1. Introduction / Profile -->
+    <section id="intro" class="hero section">
+      <div class="card">
+        <h1>สวัสดีครับ/ค่ะ, ฉันชื่อ <span style="color:var(--primary)">[ชื่อ–นามสกุล]</span></h1>
+        <p class="lead">[สาขา/คณะ/มหาวิทยาลัย] — นักศึกษาปีที่ [X] สนใจ [AI / Web / Cybersecurity / Data Science / …]</p>
+        <div class="row">
+          <span class="kpi">📍 จังหวัด: [ใส่จังหวัด]</span>
+          <span class="kpi">🎯 เป้าหมาย: [Frontend Dev / Data Analyst / etc.]</span>
+          <span class="kpi">📧 Email: you@example.com</span>
+        </div>
+        <p class="muted">แก้ไขข้อความในวงเล็บ [ ] ตามข้อมูลของคุณได้เลย</p>
+      </div>
+      <div class="card" aria-label="Profile image">
+        <!-- วางลิงก์รูปโปรไฟล์ของคุณแทน src ด้านล่าง -->
+        <img src="https://picsum.photos/600/600" alt="Profile" style="width:100%;border-radius:16px;border:1px solid var(--border)" />
+        <div class="row" style="margin-top:10px">
+          <a class="tag" href="https://github.com/yourname" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="tag" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="tag" href="#" target="_blank" rel="noreferrer">Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Skills -->
+    <section id="skills" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>ทักษะ (Skills)</h2></div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Programming & Tools</h3>
+          <div class="row">
+            <span class="pill">Python</span>
+            <span class="pill">Java</span>
+            <span class="pill">C#</span>
+            <span class="pill">HTML/CSS/JS</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Git / VS Code</span>
+            <span class="pill">Figma</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI • Data • Soft Skills</h3>
+          <div class="row">
+            <span class="pill">TensorFlow</span>
+            <span class="pill">scikit‑learn</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">DataViz</span>
+            <span class="pill">การสื่อสาร</span>
+            <span class="pill">ทำงานเป็นทีม</span>
+            <span class="pill">แก้ปัญหา</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Projects / Portfolio -->
+    <section id="projects" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>ผลงานที่ผ่านมา (Projects / Portfolio)</h2></div>
+      <div class="grid cols-3">
+        <!-- การ์ด 1: ตัวอย่างโครงการเว็บไซต์ -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/site/800/450" alt="Screenshot" />
+          <h3>ระบบจองห้องประชุมออนไลน์</h3>
+          <p class="muted">เว็บแอปสำหรับจองห้อง • HTML/CSS/JS + Firebase • มีระบบล็อกอินและแดชบอร์ด</p>
+          <div class="row">
+            <a href="https://github.com/yourname/project-1" target="_blank" rel="noreferrer">GitHub Repo →</a>
+            <a href="#" target="_blank" rel="noreferrer">Demo (ถ้ามี) →</a>
+          </div>
+        </article>
+        <!-- การ์ด 2: โครงการ Data/AI -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/data/800/450" alt="Screenshot" />
+          <h3>AI ทำนายโรคเบาหวาน</h3>
+          <p class="muted">สรุปผลการเทรนโมเดลด้วย scikit‑learn • Accuracy 0.87 • มีแดชบอร์ด Power BI</p>
+          <div class="row">
+            <a href="https://github.com/yourname/project-2" target="_blank" rel="noreferrer">GitHub Repo →</a>
+            <a href="#" target="_blank" rel="noreferrer">รายงาน/สไลด์ →</a>
+          </div>
+        </article>
+        <!-- การ์ด 3: โครงการอื่น ๆ -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/viz/800/450" alt="Screenshot" />
+          <h3>Dashboard วิเคราะห์ยอดร้านกาแฟ</h3>
+          <p class="muted">Power BI / Data Visualization • KPI ยอดขาย, เมนูยอดนิยม, เวลาเร่งด่วน</p>
+          <div class="row">
+            <a href="https://github.com/yourname/project-3" target="_blank" rel="noreferrer">GitHub Repo →</a>
+            <a href="#" target="_blank" rel="noreferrer">ภาพ Screenshot →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Education -->
+    <section id="education" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>การศึกษา (Education)</h2></div>
+      <div class="card timeline">
+        <div class="item">
+          <h3>คณะวิทยาศาสตร์ สาขาวิทยาการคอมพิวเตอร์ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
+          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย [ใส่] • กิจกรรม: ชมรม/แข่งขัน</p>
+        </div>
+        <div class="item">
+          <h3>ระดับมัธยมปลาย — โรงเรียน [ชื่อโรงเรียน]</h3>
+          <p class="muted">แผนการเรียน [วิทย์‑คณิต/ศิลป์ภาษา] • รางวัล/ผลงานเด่น</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Activities & Achievements -->
+    <section id="achievements" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>กิจกรรมและผลงานอื่น ๆ (Activities / Achievements)</h2></div>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>กิจกรรม</h3>
+          <ul class="list">
+            <li>ผู้เข้าร่วมอบรม “AI for Beginners by Microsoft”</li>
+            <li>เข้าร่วมแข่งขัน UDRU Hackathon 2025</li>
+            <li>อาสาพัฒนาชุมชน/งานมหาวิทยาลัย</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>รางวัล/ความสำเร็จ</h3>
+          <ul class="list">
+            <li>รางวัลชนะเลิศโครงงานด้าน IoT</li>
+            <li>ผลงานได้รับเลือกแสดงในนิทรรศการ</li>
+            <li>ใบประกาศนียบัตร/ทุนการศึกษา</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact -->
+    <section id="contact" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>ติดต่อ (Contact)</h2></div>
+      <div class="card">
+        <p>📧 Email: <a href="mailto:you@example.com">you@example.com</a></p>
+        <p>🌐 GitHub: <a href="https://github.com/yourname" target="_blank" rel="noreferrer">github.com/yourname</a></p>
+        <p>🔗 LinkedIn / Facebook / Portfolio: <span class="muted">(ใส่ลิงก์ของคุณที่นี่)</span></p>
+        <p>📍 ที่อยู่จังหวัด: <span class="muted">(ไม่จำเป็นต้องละเอียด)</span></p>
+      </div>
+    </section>
+
+    <!-- 7. Career Interest / Goal -->
+    <section id="goals" class="section">
+      <div class="section-title"><span class="hash">#</span><h2>องค์ประกอบเสริม / เป้าหมายในอนาคต</h2></div>
+      <div class="card">
+        <p>สนใจงานด้าน: <strong>[Frontend / Backend / Full‑stack / Data Analyst / ML Engineer / Cybersecurity]</strong></p>
+        <p>สิ่งที่กำลังเรียนรู้: <span class="muted">Next.js, Docker, Cloud, Prompt Engineering, ฯลฯ</span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="row" style="align-items:center;justify-content:space-between">
+      <p class="muted">© <span id="year"></span> • สร้างด้วย GitHub Pages</p>
+      <a class="tag" href="#intro">กลับขึ้นบน ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle light/dark theme & remember choice
+    const btn = document.getElementById('theme');
+    const saved = localStorage.getItem('theme');
+    if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+    btn.addEventListener('click', () => {
+      const curr = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', curr);
+      localStorage.setItem('theme', curr);
+    });
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
