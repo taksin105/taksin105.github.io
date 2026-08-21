@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taksin Nisaphawanit - Portfolio</title>
-  <meta name="description" content="Portfolio ของทักษิณ นิสภวาณิชย์ นักศึกษาสาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏอุดรธานี | Web Developer • UX/UI Designer • Frontend Developer" />
+  <meta name="description" content="Portfolio ของทักษิณ นิสภวาณิชย์ นักศึกษาสาขาเทคโนโลยีสารสนเทศและผู้พัฒนา Web Application" />
   <meta property="og:title" content="Taksin Nisaphawanit - Portfolio" />
-  <meta property="og:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ นักศึกษาสาขาเทคโนโลยีสารสนเทศ | Web Developer • UX/UI Designer" />
+  <meta property="og:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ | Software Development • Web Development" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://taksin105.github.io/" />
   <meta property="og:image" content="https://taksin105.github.io/images/profile.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Taksin Nisaphawanit - Portfolio" />
-  <meta name="twitter:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ | Web Developer • UX/UI Designer" />
+  <meta name="twitter:description" content="Portfolio ของทักษิณ นิสภวาณิชย์ | Software Developer • Web Developer" />
   <meta name="color-scheme" content="dark light">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -593,6 +593,18 @@
     @media (prefers-reduced-motion: reduce){
       *{animation:none!important;transition:none!important}
     }
+
+    /* Neutral skill badges keep the section consistent across platforms. */
+    .category-icon{font-family:"Inter",sans-serif;font-size:20px;font-weight:700;letter-spacing:-.08em;color:var(--primary)}
+    .skill-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;letter-spacing:-.03em;color:var(--primary)}
+    .soft-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
+    .skill-category{padding:22px;margin-bottom:22px;background:rgba(18,19,24,.74);border:1px solid var(--border);border-radius:14px}
+    .skill-category:hover{background:rgba(18,19,24,.82)}
+    .skill-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .skill-item{min-height:108px;justify-content:space-between}
+    .soft-skills{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    @media (max-width:640px){.skill-grid,.soft-skills{grid-template-columns:repeat(2,minmax(0,1fr))}.skill-category{padding:16px}.skill-item{min-height:96px}}
+
   </style>
 </head>
 <body class="bg-grid">
@@ -608,6 +620,7 @@
       <nav class="menu" aria-label="Main">
         <a href="#intro">Intro</a>
         <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#education">Education</a>
         <a href="#certificates">Certificates</a>
@@ -631,21 +644,21 @@
             <span class="info-icon">🎓</span>
             <div>
               <strong>เทคโนโลยีสารสนเทศ</strong>
-              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • ชั้นปีที่ 3</p>
+              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • 2023 – Present • GPAX 3.51</p>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">💡</span>
             <div>
               <strong>สนใจด้าน</strong>
-              <p class="muted">Web Development • AI • Cybersecurity</p>
+              <p class="muted">Software Development • Web Development</p>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">🎯</span>
             <div>
               <strong>เป้าหมาย</strong>
-              <p class="muted">Frontend Developer • Web Developer</p>
+              <p class="muted">Software Developer • Web Developer</p>
             </div>
           </div>
         </div>
@@ -661,16 +674,16 @@
         
         <div class="intro-stats">
           <div class="stat-item">
-            <div class="stat-value">10+</div>
-            <div class="stat-label">โครงการ</div>
+            <div class="stat-value">2026</div>
+            <div class="stat-label">Internship</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">5+</div>
-            <div class="stat-label">ทักษะ</div>
+            <div class="stat-value">3.51</div>
+            <div class="stat-label">GPAX</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">3+</div>
-            <div class="stat-label">รางวัล</div>
+            <div class="stat-value">4+</div>
+            <div class="stat-label">Core areas</div>
           </div>
         </div>
       </div>
@@ -713,33 +726,33 @@
       <!-- Programming Languages -->
       <div class="skill-category">
         <div class="category-header">
-          <span class="category-icon">💻</span>
+          <span class="category-icon" aria-hidden="true">&lt;/&gt;</span>
           <h3>Programming Languages</h3>
         </div>
         <div class="skill-grid">
           <div class="skill-item">
-            <div class="skill-icon">🐍</div>
+            <div class="skill-icon" aria-hidden="true">PY</div>
             <div class="skill-name">Python</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">☕</div>
+            <div class="skill-icon" aria-hidden="true">JV</div>
             <div class="skill-name">Java</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">⚡</div>
-            <div class="skill-name">C++</div>
+            <div class="skill-icon" aria-hidden="true">TS</div>
+            <div class="skill-name">TypeScript</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">🌐</div>
-            <div class="skill-name">HTML/CSS/JS</div>
+            <div class="skill-icon" aria-hidden="true">JS</div>
+            <div class="skill-name">JavaScript</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">🐘</div>
+            <div class="skill-icon" aria-hidden="true">PHP</div>
             <div class="skill-name">PHP</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">🗄️</div>
-            <div class="skill-name">SQL</div>
+            <div class="skill-icon" aria-hidden="true">API</div>
+            <div class="skill-name">REST API</div>
           </div>
         </div>
       </div>
@@ -747,8 +760,8 @@
       <!-- Tools & Design -->
       <div class="skill-category">
         <div class="category-header">
-          <span class="category-icon">🛠️</span>
-          <h3>Tools & Design</h3>
+          <span class="category-icon" aria-hidden="true">⌘</span>
+          <h3>Frontend / Backend / Tools</h3>
         </div>
         <div class="skill-grid">
           <div class="skill-item">
@@ -760,16 +773,32 @@
             <div class="skill-name">Git</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">💼</div>
+            <div class="skill-icon" aria-hidden="true">VS</div>
             <div class="skill-name">VS Code</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">🎨</div>
-            <div class="skill-name">Figma</div>
+            <div class="skill-icon" aria-hidden="true">FB</div>
+            <div class="skill-name">Firebase</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">🖼️</div>
-            <div class="skill-name">Photoshop</div>
+            <div class="skill-icon" aria-hidden="true">DB</div>
+            <div class="skill-name">MongoDB</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">RE</div>
+            <div class="skill-name">React</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">BT</div>
+            <div class="skill-name">Bootstrap</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">NO</div>
+            <div class="skill-name">Node.js</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">EX</div>
+            <div class="skill-name">Express</div>
           </div>
         </div>
       </div>
@@ -777,32 +806,32 @@
       <!-- Soft Skills -->
       <div class="skill-category">
         <div class="category-header">
-          <span class="category-icon">🤝</span>
+          <span class="category-icon" aria-hidden="true">+</span>
           <h3>Soft Skills</h3>
         </div>
         <div class="soft-skills">
           <div class="soft-skill-item">
-            <span class="soft-icon">💬</span>
+            <span class="soft-icon" aria-hidden="true">01</span>
             <span>การสื่อสาร</span>
           </div>
           <div class="soft-skill-item">
-            <span class="soft-icon">👥</span>
+            <span class="soft-icon" aria-hidden="true">02</span>
             <span>ทำงานเป็นทีม</span>
           </div>
           <div class="soft-skill-item">
-            <span class="soft-icon">🧩</span>
+            <span class="soft-icon" aria-hidden="true">03</span>
             <span>แก้ปัญหา</span>
           </div>
           <div class="soft-skill-item">
-            <span class="soft-icon">⏰</span>
+            <span class="soft-icon" aria-hidden="true">04</span>
             <span>บริหารเวลา</span>
           </div>
           <div class="soft-skill-item">
-            <span class="soft-icon">💡</span>
+            <span class="soft-icon" aria-hidden="true">05</span>
             <span>คิดสร้างสรรค์</span>
           </div>
           <div class="soft-skill-item">
-            <span class="soft-icon">📚</span>
+            <span class="soft-icon" aria-hidden="true">06</span>
             <span>เรียนรู้ด้วยตนเอง</span>
           </div>
         </div>
@@ -851,6 +880,30 @@
             <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
           </div>
         </article>
+        <!-- การ์ด 5: Widee -->
+        <article class="card project">
+          <div class="thumb"><img loading="lazy" src="images/widee-homepage.png" alt="Widee website homepage" /></div>
+          <h3>Widee / Agent-One Backoffice</h3>
+          <p class="muted">มีส่วนช่วยพัฒนาระบบ SaaS Backoffice ระหว่างฝึกงาน • React, TypeScript, Node.js, Express, Firebase และ Firestore • พัฒนา API, แก้ไขบั๊ก และทดสอบระบบ</p>
+          <div class="row">
+            <a href="https://widee.tech" target="_blank" rel="noreferrer">ดูเว็บไซต์ Widee →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Experience -->
+    <section id="experience" class="section reveal">
+      <div class="section-title"><span class="hash">#</span><h2>ประสบการณ์ (Experience)</h2></div>
+      <div class="card">
+        <h3>Software / IT Intern — Next Triple Nine Co., Ltd.</h3>
+        <p class="muted">2026 • Widee / Agent-One Backoffice System</p>
+        <ul class="list">
+          <li>พัฒนา Frontend ด้วย React และ TypeScript</li>
+          <li>พัฒนา Backend API ด้วย Node.js, Express และ Firebase Functions</li>
+          <li>ทำงานกับ Firestore, Multi-tenant data, OAuth, Webhook และ REST API</li>
+          <li>ทดสอบระบบ แก้ไขข้อผิดพลาด และตรวจสอบคุณภาพฟีเจอร์</li>
+        </ul>
       </div>
     </section>
 
@@ -860,19 +913,12 @@
       <div class="card timeline">
         <div class="item">
           <h3>ปัจจุบันกำลังศึกษาที่ สาขาเทคโนโลยีสารสนเทศ — มหาวิทยาลัยราชภัฏอุดรธานี</h3>
-          <p class="muted">2566 – ปัจจุบัน • เกรดเฉลี่ย 3.58 </p>
+          <p class="muted">2023 – Present • GPAX 3.51 </p>
+          <p>ศึกษาและพัฒนาทักษะด้านการพัฒนา Web Application ตั้งแต่การออกแบบและพัฒนา Frontend ไปจนถึง Backend, Database และการทดสอบระบบ โดยมีประสบการณ์ทำโครงงานด้านระบบคำนวณแคลอรีจากภาพอาหารและระบบเช่ารถยนต์อัจฉริยะ</p>
         </div>
         <div class="item">
           <h3>ระดับ ปวช. — วิทยาลัยเทคนิคอุดรธานี</h3>
           <p class="muted">2563 • เกรดเฉลี่ย 3.63 </p>
-        </div>
-        <div class="item">
-          <h3>ระดับมัธยมต้น — โรงเรียนบ้านหมากแข้ง</h3>
-          <p class="muted">2560 • เกรดเฉลี่ย 3.34 </p>
-        </div>
-        <div class="item">
-          <h3>ระดับประถม — โรงเรียนทรงธรรมวิทยา</h3>
-          <p class="muted">2554 • เกรดเฉลี่ย 2.96 </p>
         </div>
       </div>
     </section>
@@ -1032,8 +1078,8 @@
     <section id="goals" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>องค์ประกอบเสริม / เป้าหมายในอนาคต</h2></div>
       <div class="card">
-        <p>สนใจงานด้าน: <strong>[Frontend / Backend / Full‑stack / Data Analyst / ML Engineer / Cybersecurity]</strong></p>
-        <p>สิ่งที่กำลังเรียนรู้: <span class="muted">Next.js, Docker, Cloud, Prompt Engineering, ฯลฯ</span></p>
+        <p>สนใจงานด้าน: <strong>Software Development และ Web Development</strong></p>
+        <p>จุดแข็งที่ต้องการพัฒนาต่อ: <span class="muted">การสร้าง Web Application ที่เชื่อถือได้ การพัฒนา API และการทำงานร่วมกับทีม</span></p>
       </div>
     </section>
   </main>
