@@ -663,17 +663,109 @@
       *{animation:none!important;transition:none!important}
     }
 
-    /* Neutral skill badges keep the section consistent across platforms. */
-    .category-icon{font-family:"Inter",sans-serif;font-size:20px;font-weight:700;letter-spacing:-.08em;color:var(--primary)}
-    .skill-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;letter-spacing:-.03em;color:var(--primary)}
-    .soft-icon{font-family:"Inter",sans-serif;font-size:11px;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums}
-    .skill-category{padding:22px;margin-bottom:22px;background:var(--card);border:1px solid var(--border);border-radius:14px;transition:all .3s ease}
-    [data-theme="dark"] .skill-category{background:rgba(18,19,24,.74)}
-    [data-theme="dark"] .skill-category:hover{background:rgba(18,19,24,.82)}
-    .skill-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .skill-item{min-height:108px;justify-content:space-between}
-    .soft-skills{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-    @media (max-width:640px){.skill-grid,.soft-skills{grid-template-columns:repeat(2,minmax(0,1fr))}.skill-category{padding:16px}.skill-item{min-height:96px}}
+    /* ===== Clean Frameless Skills Section & Brand Badges ===== */
+    .skill-category{margin-bottom:36px;padding:0;background:transparent;border:none;border-radius:0}
+    .category-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .category-header h3{margin:0;font-size:18px;font-weight:700;color:var(--text)}
+    .category-icon{
+      width:34px;height:34px;border-radius:9px;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:14px;font-weight:700;font-family:"Inter",sans-serif;
+      background:linear-gradient(135deg, rgba(79,140,255,.12), rgba(0,208,148,.12));
+      border:1px solid var(--border);color:var(--primary);
+    }
+    .skill-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .skill-item{
+      min-height:112px;padding:16px 18px;border-radius:14px;
+      background:var(--card);border:1px solid var(--border);
+      display:flex;flex-direction:column;justify-content:space-between;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position:relative;overflow:hidden;
+    }
+    .skill-item:hover{
+      transform:translateY(-4px);border-color:var(--primary);
+      box-shadow:0 12px 24px -6px var(--ring);
+    }
+    .skill-icon{
+      width:44px;height:44px;border-radius:10px;
+      font-size:12px;font-weight:700;font-family:"Inter",sans-serif;
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:8px;border:1px solid transparent;
+      transition:transform .25s ease;
+    }
+    .skill-item:hover .skill-icon{transform:scale(1.08)}
+    .skill-name{font-weight:600;font-size:15px;color:var(--text);line-height:1.35}
+    .soft-skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .soft-skill-item{
+      padding:16px 18px;border-radius:14px;
+      background:var(--card);border:1px solid var(--border);
+      font-weight:500;display:flex;align-items:center;gap:12px;
+      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .soft-skill-item:hover{
+      transform:translateX(6px);border-color:var(--primary);
+      box-shadow:0 6px 18px -4px var(--ring);
+    }
+    .soft-icon{
+      width:32px;height:32px;border-radius:8px;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:700;font-family:"Inter",sans-serif;
+      background:linear-gradient(135deg, rgba(79,140,255,.12), rgba(0,208,148,.12));
+      border:1px solid var(--border);color:var(--primary);
+    }
+    @media (max-width:640px){
+      .skill-grid,.soft-skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .skill-item{min-height:98px;padding:14px}
+    }
+
+    /* Brand Icon Badges */
+    .skill-icon.is-react { color: #0284c7; background: #e0f2fe; border-color: #bae6fd; }
+    .skill-icon.is-ts { color: #2563eb; background: #eff6ff; border-color: #bfdbfe; }
+    .skill-icon.is-js { color: #b45309; background: #fef9c3; border-color: #fef08a; }
+    .skill-icon.is-html { color: #ea580c; background: #ffedd5; border-color: #fed7aa; }
+    .skill-icon.is-python { color: #0369a1; background: #f0f9ff; border-color: #bae6fd; }
+    .skill-icon.is-php { color: #4f46e5; background: #eef2ff; border-color: #c7d2fe; }
+    .skill-icon.is-java { color: #dc2626; background: #fef2f2; border-color: #fecaca; }
+    .skill-icon.is-bootstrap { color: #7c3aed; background: #f5f3ff; border-color: #ddd6fe; }
+
+    .skill-icon.is-node { color: #16a34a; background: #f0fdf4; border-color: #bbf7d0; }
+    .skill-icon.is-express { color: #334155; background: #f1f5f9; border-color: #cbd5e1; }
+    .skill-icon.is-api { color: #0891b2; background: #ecfeff; border-color: #a5f3fc; }
+    .skill-icon.is-firebase { color: #ea580c; background: #fff7ed; border-color: #ffedd5; }
+    .skill-icon.is-firestore { color: #d97706; background: #fffbeb; border-color: #fef3c7; }
+    .skill-icon.is-db { color: #059669; background: #ecfdf5; border-color: #a7f3d0; }
+
+    .skill-icon.is-gemini { color: #7c3aed; background: #f3e8ff; border-color: #e9d5ff; }
+    .skill-icon.is-n8n { color: #e11d48; background: #ffe4e6; border-color: #fecdd3; }
+    .skill-icon.is-figma { color: #db2777; background: #fdf2f8; border-color: #fbcfe8; }
+    .skill-icon.is-github { color: #1e293b; background: #f1f5f9; border-color: #cbd5e1; }
+    .skill-icon.is-github svg { color: #1e293b; width: 22px; height: 22px; }
+    .skill-icon.is-vscode { color: #0284c7; background: #e0f2fe; border-color: #bae6fd; }
+    .skill-icon.is-qa { color: #059669; background: #ecfdf5; border-color: #a7f3d0; }
+
+    [data-theme="dark"] .skill-icon.is-react { color: #38bdf8; background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.3); }
+    [data-theme="dark"] .skill-icon.is-ts { color: #60a5fa; background: rgba(96, 165, 250, 0.14); border-color: rgba(96, 165, 250, 0.3); }
+    [data-theme="dark"] .skill-icon.is-js { color: #facc15; background: rgba(250, 204, 21, 0.14); border-color: rgba(250, 204, 21, 0.3); }
+    [data-theme="dark"] .skill-icon.is-html { color: #fb923c; background: rgba(251, 146, 60, 0.14); border-color: rgba(251, 146, 60, 0.3); }
+    [data-theme="dark"] .skill-icon.is-python { color: #38bdf8; background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.3); }
+    [data-theme="dark"] .skill-icon.is-php { color: #818cf8; background: rgba(129, 140, 248, 0.14); border-color: rgba(129, 140, 248, 0.3); }
+    [data-theme="dark"] .skill-icon.is-java { color: #f87171; background: rgba(248, 113, 113, 0.14); border-color: rgba(248, 113, 113, 0.3); }
+    [data-theme="dark"] .skill-icon.is-bootstrap { color: #a78bfa; background: rgba(167, 139, 250, 0.14); border-color: rgba(167, 139, 250, 0.3); }
+
+    [data-theme="dark"] .skill-icon.is-node { color: #4ade80; background: rgba(74, 222, 128, 0.14); border-color: rgba(74, 222, 128, 0.3); }
+    [data-theme="dark"] .skill-icon.is-express { color: #94a3b8; background: rgba(148, 163, 184, 0.14); border-color: rgba(148, 163, 184, 0.3); }
+    [data-theme="dark"] .skill-icon.is-api { color: #22d3ee; background: rgba(34, 211, 238, 0.14); border-color: rgba(34, 211, 238, 0.3); }
+    [data-theme="dark"] .skill-icon.is-firebase { color: #fb923c; background: rgba(251, 146, 60, 0.14); border-color: rgba(251, 146, 60, 0.3); }
+    [data-theme="dark"] .skill-icon.is-firestore { color: #fbbf24; background: rgba(251, 191, 36, 0.14); border-color: rgba(251, 191, 36, 0.3); }
+    [data-theme="dark"] .skill-icon.is-db { color: #34d399; background: rgba(52, 211, 153, 0.14); border-color: rgba(52, 211, 153, 0.3); }
+
+    [data-theme="dark"] .skill-icon.is-gemini { color: #c084fc; background: rgba(192, 132, 252, 0.14); border-color: rgba(192, 132, 252, 0.3); }
+    [data-theme="dark"] .skill-icon.is-n8n { color: #fb7185; background: rgba(251, 113, 133, 0.14); border-color: rgba(251, 113, 133, 0.3); }
+    [data-theme="dark"] .skill-icon.is-figma { color: #f472b6; background: rgba(244, 114, 182, 0.14); border-color: rgba(244, 114, 182, 0.3); }
+    [data-theme="dark"] .skill-icon.is-github { color: #cbd5e1; background: rgba(203, 213, 225, 0.14); border-color: rgba(203, 213, 225, 0.3); }
+    [data-theme="dark"] .skill-icon.is-github svg { color: #cbd5e1; }
+    [data-theme="dark"] .skill-icon.is-vscode { color: #38bdf8; background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.3); }
+    [data-theme="dark"] .skill-icon.is-qa { color: #34d399; background: rgba(52, 211, 153, 0.14); border-color: rgba(52, 211, 153, 0.25); }
 
     /* ===== Light Theme Explicit Enhancements ===== */
     [data-theme="light"] body {
@@ -821,43 +913,52 @@
       color: var(--primary);
     }
     [data-theme="light"] .skill-category {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05);
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin-bottom: 36px;
     }
     [data-theme="light"] .skill-category:hover {
-      background: #ffffff;
-      border-color: #cbd5e1;
-      box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.08);
+      background: transparent;
+      box-shadow: none;
     }
     [data-theme="light"] .category-header h3 {
       color: #0f172a;
     }
+    [data-theme="light"] .category-icon {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: var(--primary);
+    }
     [data-theme="light"] .skill-item {
-      background: #f8fafc;
+      background: #ffffff;
       border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
     }
     [data-theme="light"] .skill-item:hover {
       background: #ffffff;
       border-color: var(--primary);
-      box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.15);
-    }
-    [data-theme="light"] .skill-icon {
-      background: #eff6ff;
-      border: 1px solid #dbeafe;
+      box-shadow: 0 12px 24px -6px rgba(37, 99, 235, 0.14), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
     }
     [data-theme="light"] .skill-name {
       color: #0f172a;
     }
     [data-theme="light"] .soft-skill-item {
-      background: #f8fafc;
+      background: #ffffff;
       border: 1px solid #e2e8f0;
       color: #1e293b;
+      box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
     }
     [data-theme="light"] .soft-skill-item:hover {
       background: #ffffff;
       border-color: var(--primary);
-      box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.12);
+    }
+    [data-theme="light"] .soft-icon {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: var(--primary);
     }
     [data-theme="light"] .pill {
       background: #f1f5f9;
@@ -1187,35 +1288,35 @@
         </div>
         <div class="skill-grid">
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">RE</div>
+            <div class="skill-icon is-react" aria-hidden="true">RE</div>
             <div class="skill-name">React</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">TS</div>
+            <div class="skill-icon is-ts" aria-hidden="true">TS</div>
             <div class="skill-name">TypeScript</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">JS</div>
+            <div class="skill-icon is-js" aria-hidden="true">JS</div>
             <div class="skill-name">JavaScript</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">HTML</div>
+            <div class="skill-icon is-html" aria-hidden="true">HTML</div>
             <div class="skill-name">HTML5 / CSS3</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">PY</div>
+            <div class="skill-icon is-python" aria-hidden="true">PY</div>
             <div class="skill-name">Python</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">PHP</div>
+            <div class="skill-icon is-php" aria-hidden="true">PHP</div>
             <div class="skill-name">PHP</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">JV</div>
+            <div class="skill-icon is-java" aria-hidden="true">JV</div>
             <div class="skill-name">Java</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">BT</div>
+            <div class="skill-icon is-bootstrap" aria-hidden="true">BT</div>
             <div class="skill-name">Bootstrap</div>
           </div>
         </div>
@@ -1229,27 +1330,27 @@
         </div>
         <div class="skill-grid">
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">NO</div>
+            <div class="skill-icon is-node" aria-hidden="true">NO</div>
             <div class="skill-name">Node.js</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">EX</div>
+            <div class="skill-icon is-express" aria-hidden="true">EX</div>
             <div class="skill-name">Express</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">API</div>
+            <div class="skill-icon is-api" aria-hidden="true">API</div>
             <div class="skill-name">REST API</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">FB</div>
+            <div class="skill-icon is-firebase" aria-hidden="true">FB</div>
             <div class="skill-name">Firebase / Functions</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">FS</div>
+            <div class="skill-icon is-firestore" aria-hidden="true">FS</div>
             <div class="skill-name">Firestore (Multi-tenant)</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">DB</div>
+            <div class="skill-icon is-db" aria-hidden="true">DB</div>
             <div class="skill-name">MongoDB & MySQL</div>
           </div>
         </div>
@@ -1263,19 +1364,19 @@
         </div>
         <div class="skill-grid">
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">AI</div>
+            <div class="skill-icon is-gemini" aria-hidden="true">AI</div>
             <div class="skill-name">Google Gemini AI</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">N8N</div>
+            <div class="skill-icon is-n8n" aria-hidden="true">N8N</div>
             <div class="skill-name">n8n Automation / Webhook</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">FG</div>
+            <div class="skill-icon is-figma" aria-hidden="true">FG</div>
             <div class="skill-name">Figma (UX/UI Design)</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon">
+            <div class="skill-icon is-github">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
@@ -1283,11 +1384,11 @@
             <div class="skill-name">Git & GitHub</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">VS</div>
+            <div class="skill-icon is-vscode" aria-hidden="true">VS</div>
             <div class="skill-name">VS Code / Codex</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">QA</div>
+            <div class="skill-icon is-qa" aria-hidden="true">QA</div>
             <div class="skill-name">QA Testing & Bug Fixing</div>
           </div>
         </div>
