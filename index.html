@@ -270,15 +270,8 @@
     }
     .card{
       background:linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 0%), color-mix(in oklab, var(--card), transparent 14%));
-      padding:18px;border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;
+      padding:20px;border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;
       transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
-      animation:card-float 6s ease-in-out infinite;
-    }
-    .card:nth-child(2n){animation-delay:-3s}
-    .card:nth-child(3n){animation-delay:-1.5s}
-    @keyframes card-float{
-      0%,100%{transform:translateY(0px)}
-      50%{transform:translateY(-8px)}
     }
     .card:before{
       content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
@@ -300,8 +293,9 @@
       to{transform:rotate(360deg)}
     }
     .card:hover{
-      box-shadow:0 20px 40px -20px var(--ring), 0 1px 0 0 rgba(255,255,255,.04) inset;
-      transform:translateY(-6px) scale(1.02);animation-play-state:paused;
+      box-shadow:0 16px 36px -16px var(--ring), 0 1px 0 0 rgba(255,255,255,.04) inset;
+      border-color:var(--primary);
+      transform:translateY(-4px);
     }
     .card:hover:before{opacity:.7}
     .card:hover:after{opacity:1}
@@ -565,18 +559,91 @@
     .tip .tiptext{position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:6px 8px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
     .tip.show .tiptext{opacity:1}
 
-    /* ===== Image Slider ===== */
-    .slider{position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--border)}
-    .slider-wrapper{display:flex;transition:transform .5s ease-in-out}
-    .slider-wrapper img{width:100%;flex-shrink:0;display:block;object-fit:cover;height:400px}
-    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.2);padding:12px 16px;cursor:pointer;border-radius:8px;z-index:10;transition:background .3s ease, transform .2s ease;backdrop-filter:blur(8px)}
-    .slider-btn:hover{background:rgba(0,0,0,.8);transform:translateY(-50%) scale(1.1)}
-    .slider-btn.prev{left:12px}
-    .slider-btn.next{right:12px}
-    .slider-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
-    .slider-dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .3s ease, transform .2s ease}
-    .slider-dot.active{background:var(--primary);transform:scale(1.3)}
-    .slider-dot:hover{background:var(--accent)}
+    /* ===== Project Badges & Tech Stack Tags ===== */
+    .featured-badge{
+      position:absolute;top:12px;right:12px;z-index:15;
+      font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;
+      background:linear-gradient(135deg, #ff416c, #ff4b2b);color:#fff;
+      box-shadow:0 4px 12px rgba(255,65,108,.4);letter-spacing:.3px;
+    }
+    .tech-tags{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+    .tech-tag{
+      font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;
+      background:linear-gradient(135deg, rgba(79,140,255,.12), rgba(0,208,148,.12));
+      border:1px solid var(--border);color:var(--primary);
+      letter-spacing:0.2px;line-height:1.3;
+    }
+
+    /* ===== Project Category Filter Tabs ===== */
+    .filter-tabs{
+      display:flex;gap:8px;margin:16px 0 24px;flex-wrap:wrap;
+    }
+    .filter-btn{
+      padding:8px 16px;border-radius:999px;border:1px solid var(--border);
+      background:var(--card);color:var(--muted);font-size:13px;font-weight:600;
+      cursor:pointer;transition:all .25s ease;font-family:inherit;
+    }
+    .filter-btn:hover{
+      color:var(--text);border-color:var(--primary);background:rgba(79,140,255,.08);
+      transform:translateY(-2px);
+    }
+    .filter-btn.active{
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      color:#fff;border-color:transparent;box-shadow:0 4px 16px -4px var(--ring);
+      transform:translateY(-2px);
+    }
+    .project-card{transition:opacity .3s ease, transform .3s ease}
+    .project-card.hide{display:none!important}
+
+    /* ===== Resume Modal ===== */
+    .modal-overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);
+      z-index:100;display:none;align-items:center;justify-content:center;padding:16px;
+      opacity:0;transition:opacity .25s ease;
+    }
+    .modal-overlay.show{display:flex;opacity:1}
+    .modal-container{
+      background:var(--card);border:1px solid var(--border);border-radius:18px;
+      max-width:860px;width:100%;max-height:92vh;display:flex;flex-direction:column;
+      box-shadow:0 24px 60px rgba(0,0,0,.6);overflow:hidden;position:relative;
+      animation:modal-pop .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes modal-pop{
+      0%{transform:scale(.92) translateY(20px);opacity:0}
+      100%{transform:scale(1) translateY(0);opacity:1}
+    }
+    .modal-header{
+      padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid var(--border);background:var(--bg-soft);flex-wrap:wrap;gap:12px;
+    }
+    .modal-header h3{margin:0;font-size:16px;font-weight:600;color:var(--text)}
+    .modal-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .modal-tabs{display:flex;gap:4px;background:var(--bg);padding:3px;border-radius:10px;border:1px solid var(--border)}
+    .modal-tab{
+      padding:5px 12px;border-radius:7px;border:none;background:transparent;
+      color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;
+    }
+    .modal-tab.active{background:var(--primary);color:#fff}
+    .btn-download-resume{
+      font-size:12px;padding:6px 12px;border-radius:8px;text-decoration:none;
+      background:linear-gradient(135deg, rgba(79,140,255,.15), rgba(0,208,148,.15));
+      border:1px solid var(--primary);color:var(--primary);font-weight:600;
+      display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+    }
+    .btn-download-resume:hover{background:var(--primary);color:#fff}
+    .modal-close{
+      background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;
+      padding:4px 8px;border-radius:8px;line-height:1;transition:all .2s;
+    }
+    .modal-close:hover{color:var(--text);background:rgba(255,255,255,.1)}
+    .modal-body{
+      overflow-y:auto;padding:16px;display:flex;justify-content:center;background:#0e1017;
+      text-align:center;
+    }
+    .modal-body img{
+      max-width:100%;height:auto;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.4);
+      display:block;margin:0 auto;
+    }
 
     /* ===== Responsive ===== */
     @media (max-width:900px){
@@ -635,55 +702,62 @@
     <!-- 1. Introduction / Profile -->
     <section id="intro" class="hero section reveal">
       <div class="card intro-card">
-        <div class="intro-badge">👋 สวัสดี! ยินดีต้อนรับ</div>
-        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span> <span class="nickname"></span></h1>
-        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span> <span class="nickname-en"></span></h2>
+        <div class="intro-badge">👋 สวัสดี! ยินดีต้อนรับสู่พอร์ตโฟลิโอ</div>
+        <h1><span class="shine">ทักษิณ นิสภวาณิชย์</span></h1>
+        <h2><span style="color:var(--primary)">Taksin Nisaphawanit</span></h2>
         
+        <p class="muted" style="font-size:15px;margin:12px 0 16px;line-height:1.65">
+          นักศึกษาสาขาเทคโนโลยีสารสนเทศ มหาวิทยาลัยราชภัฏอุดรธานี มีประสบการณ์พัฒนา Web Application จากการฝึกงานที่ <strong>Next Triple Nine Co., Ltd.</strong> เชี่ยวชาญ React, TypeScript, Node.js, Express, Firebase และการพัฒนา REST API รวมถึงต่อยอดด้วย Google Gemini AI และ Workflow Automation พร้อมเปิดรับโอกาสในการทำงานและการเรียนรู้เทคโนโลยีใหม่ๆ เสมอครับ
+        </p>
+
         <div class="intro-info">
           <div class="info-item">
             <span class="info-icon">🎓</span>
             <div>
-              <strong>เทคโนโลยีสารสนเทศ</strong>
-              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • 2023 – Present • GPAX 3.51</p>
+              <strong>เทคโนโลยีสารสนเทศ (IT)</strong>
+              <p class="muted">มหาวิทยาลัยราชภัฏอุดรธานี • 2023 – ปัจจุบัน • GPAX 3.51</p>
             </div>
           </div>
           <div class="info-item">
-            <span class="info-icon">💡</span>
+            <span class="info-icon">💼</span>
             <div>
-              <strong>สนใจด้าน</strong>
-              <p class="muted">Software Development • Web Development</p>
+              <strong>ประสบการณ์ฝึกงาน (2026)</strong>
+              <p class="muted">Software / IT Intern — Next Triple Nine Co., Ltd. (Widee SaaS)</p>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">🎯</span>
             <div>
-              <strong>เป้าหมาย</strong>
-              <p class="muted">Software Developer • Web Developer</p>
+              <strong>ตำแหน่งเป้าหมาย</strong>
+              <p class="muted">Software Developer • Web Developer (Frontend / Backend / Full-Stack)</p>
             </div>
           </div>
         </div>
 
         <div class="intro-actions">
-          <a href="#contact" class="btn-primary">
-            <span>📧 ติดต่อฉัน</span>
-          </a>
+          <button id="openResumeBtn" class="btn-primary" type="button" aria-label="ดูเรซูเม่">
+            <span>📄 ดูเรซูเม่ (Resume)</span>
+          </button>
           <a href="#projects" class="btn-secondary">
-            <span>👀 ดูผลงาน</span>
+            <span>👀 ดูผลงาน (8 Projects)</span>
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <span>📧 ติดต่อฉัน</span>
           </a>
         </div>
         
         <div class="intro-stats">
           <div class="stat-item">
             <div class="stat-value">2026</div>
-            <div class="stat-label">Internship</div>
+            <div class="stat-label">Software Intern</div>
           </div>
           <div class="stat-item">
             <div class="stat-value">3.51</div>
-            <div class="stat-label">GPAX</div>
+            <div class="stat-label">GPAX (IT UDRU)</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">4+</div>
-            <div class="stat-label">Core areas</div>
+            <div class="stat-value">8+</div>
+            <div class="stat-label">Projects & Showcase</div>
           </div>
         </div>
       </div>
@@ -721,22 +795,18 @@
 
     <!-- 2. Skills -->
     <section id="skills" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ทักษะ (Skills)</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>ทักษะความสามารถ (Skills & Tech Stack)</h2></div>
       
-      <!-- Programming Languages -->
+      <!-- Programming & Frontend -->
       <div class="skill-category">
         <div class="category-header">
           <span class="category-icon" aria-hidden="true">&lt;/&gt;</span>
-          <h3>Programming Languages</h3>
+          <h3>Frontend & Programming Languages</h3>
         </div>
         <div class="skill-grid">
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">PY</div>
-            <div class="skill-name">Python</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">JV</div>
-            <div class="skill-name">Java</div>
+            <div class="skill-icon" aria-hidden="true">RE</div>
+            <div class="skill-name">React</div>
           </div>
           <div class="skill-item">
             <div class="skill-icon" aria-hidden="true">TS</div>
@@ -747,51 +817,35 @@
             <div class="skill-name">JavaScript</div>
           </div>
           <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">HTML</div>
+            <div class="skill-name">HTML5 / CSS3</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">PY</div>
+            <div class="skill-name">Python</div>
+          </div>
+          <div class="skill-item">
             <div class="skill-icon" aria-hidden="true">PHP</div>
             <div class="skill-name">PHP</div>
           </div>
           <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">API</div>
-            <div class="skill-name">REST API</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools & Design -->
-      <div class="skill-category">
-        <div class="category-header">
-          <span class="category-icon" aria-hidden="true">⌘</span>
-          <h3>Frontend / Backend / Tools</h3>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-item">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <div class="skill-name">Git</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">VS</div>
-            <div class="skill-name">VS Code</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">FB</div>
-            <div class="skill-name">Firebase</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">DB</div>
-            <div class="skill-name">MongoDB</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon" aria-hidden="true">RE</div>
-            <div class="skill-name">React</div>
+            <div class="skill-icon" aria-hidden="true">JV</div>
+            <div class="skill-name">Java</div>
           </div>
           <div class="skill-item">
             <div class="skill-icon" aria-hidden="true">BT</div>
             <div class="skill-name">Bootstrap</div>
           </div>
+        </div>
+      </div>
+
+      <!-- Backend, Database & Cloud -->
+      <div class="skill-category">
+        <div class="category-header">
+          <span class="category-icon" aria-hidden="true">☁</span>
+          <h3>Backend, Cloud & Database</h3>
+        </div>
+        <div class="skill-grid">
           <div class="skill-item">
             <div class="skill-icon" aria-hidden="true">NO</div>
             <div class="skill-name">Node.js</div>
@@ -800,6 +854,60 @@
             <div class="skill-icon" aria-hidden="true">EX</div>
             <div class="skill-name">Express</div>
           </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">API</div>
+            <div class="skill-name">REST API</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">FB</div>
+            <div class="skill-name">Firebase / Functions</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">FS</div>
+            <div class="skill-name">Firestore (Multi-tenant)</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">DB</div>
+            <div class="skill-name">MongoDB & MySQL</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI, Automation, Design & Tools -->
+      <div class="skill-category">
+        <div class="category-header">
+          <span class="category-icon" aria-hidden="true">🤖</span>
+          <h3>AI, Automation & Tools</h3>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">AI</div>
+            <div class="skill-name">Google Gemini AI</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">N8N</div>
+            <div class="skill-name">n8n Automation / Webhook</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">FG</div>
+            <div class="skill-name">Figma (UX/UI Design)</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="skill-name">Git & GitHub</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">VS</div>
+            <div class="skill-name">VS Code / Codex</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon" aria-hidden="true">QA</div>
+            <div class="skill-name">QA Testing & Bug Fixing</div>
+          </div>
         </div>
       </div>
 
@@ -807,32 +915,32 @@
       <div class="skill-category">
         <div class="category-header">
           <span class="category-icon" aria-hidden="true">+</span>
-          <h3>Soft Skills</h3>
+          <h3>ทักษะการทำงานร่วมกับผู้อื่น (Soft Skills)</h3>
         </div>
         <div class="soft-skills">
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">01</span>
-            <span>การสื่อสาร</span>
+            <span>การแก้ไขปัญหา (Problem Solving)</span>
           </div>
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">02</span>
-            <span>ทำงานเป็นทีม</span>
+            <span>การทำงานเป็นทีม (Teamwork)</span>
           </div>
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">03</span>
-            <span>แก้ปัญหา</span>
+            <span>การสื่อสาร (Communication)</span>
           </div>
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">04</span>
-            <span>บริหารเวลา</span>
+            <span>การปรับตัว (Adaptability)</span>
           </div>
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">05</span>
-            <span>คิดสร้างสรรค์</span>
+            <span>การบริหารเวลา (Time Management)</span>
           </div>
           <div class="soft-skill-item">
             <span class="soft-icon" aria-hidden="true">06</span>
-            <span>เรียนรู้ด้วยตนเอง</span>
+            <span>การเรียนรู้ด้วยตนเองอย่างต่อเนื่อง</span>
           </div>
         </div>
       </div>
@@ -841,81 +949,152 @@
     <!-- 3. Projects / Portfolio -->
     <section id="projects" class="section reveal">
       <div class="section-title"><span class="hash">#</span><h2>ผลงานของผม 🔥 (Projects / Portfolio)</h2></div>
-      <div class="grid cols-3">
-        <!-- การ์ด 1: ShoppingCart -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/shopping-cart.png" alt="ShoppingCart Screenshot" /></div>
-          <h3>🛒 ShoppingCart</h3>
-          <p class="muted">ระบบตะกร้าสินค้าออนไลน์ • เพิ่ม/ลบสินค้า จัดการรายการ • HTML/CSS/JavaScript</p>
+      
+      <!-- Project Category Filter Tabs -->
+      <div class="filter-tabs" role="tablist">
+        <button class="filter-btn active" data-filter="all" type="button">ทั้งหมด (8)</button>
+        <button class="filter-btn" data-filter="ai-fullstack" type="button">🤖 Full-Stack & AI (2)</button>
+        <button class="filter-btn" data-filter="webapp" type="button">💻 Web Applications (4)</button>
+        <button class="filter-btn" data-filter="design" type="button">🎨 UX/UI Design (2)</button>
+      </div>
+
+      <div class="grid cols-3" id="projectsGrid">
+        <!-- การ์ด 1: AutoTech AI (Featured) -->
+        <article class="card project project-card" data-category="ai-fullstack">
+          <span class="featured-badge">🔥 Featured AI</span>
+          <div class="thumb"><img loading="lazy" src="images/autotech-ai.png" alt="AutoTech AI Screenshot" /></div>
+          <h3>🤖 AutoTech AI Pro</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Gemini AI</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">Firestore</span>
+            <span class="tech-tag">n8n</span>
+          </div>
+          <p class="muted">ระบบจำแนกปัญหาและจัดการงานซ่อมรถยนต์อัจฉริยะ • วิเคราะห์อาการด้วย Google Gemini AI, ประเมินความเร่งด่วนและค่าซ่อม, ออกใบรับรถ (PDF) และแจ้งเตือนอัตโนมัติผ่าน n8n & Discord</p>
           <div class="row">
-            <a href="https://github.com/taksin105/ShoppingCart" target="_blank" rel="noreferrer">GitHub Repo →</a>
+            <a href="https://github.com/taksin105/ai-car-problem-classifier" target="_blank" rel="noreferrer">GitHub Repo →</a>
           </div>
         </article>
-        <!-- การ์ด 2: ระบบเช่ารถยนต์ออนไลน์ -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/car-rent.png" alt="CarRent Screenshot" /></div>
-          <h3>🚗 ระบบเช่ารถยนต์ออนไลน์</h3>
-          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถยนต์ออนไลน์ • HTML/CSS/PHP • ระบบจองและจัดการข้อมูลรถยนต์</p>
-          <div class="row">
-            <a href="https://github.com/taksin105/CarRent" target="_blank" rel="noreferrer">GitHub Repo →</a>
-          </div>
-        </article>
-        <!-- การ์ด 3: UX/UI Design E-commerce App -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/ecommerce-ui.png" alt="E-commerce UX/UI Design" /></div>
-          <h3>🎨 ออกแบบ UX/UI <br>แอป E-commerce</h3>
-          <p class="muted">ออกแบบส่วนติดต่อผู้ใช้และประสบการณ์ผู้ใช้ • Figma • UI Design, Wireframe, Prototype</p>
-          <div class="row">
-            <a href="https://www.figma.com/design/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&p=f&t=55swZ9OqjyWAwzol-0" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
-            <a href="https://www.figma.com/proto/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">Prototype →</a>
-          </div>
-        </article>
-        <!-- การ์ด 4: UX/UI Design Movie App -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/movie-ui.png" alt="Movie App UX/UI Design" /></div>
-          <h3>🎬 ออกแบบ UX/UI <br>แอปจองตั๋วภาพยนตร์</h3>
-          <p class="muted">ออกแบบแอปพลิเคชันสำหรับจองตั๋วภาพยนตร์ • Figma • Modern UI, User Experience Design</p>
-          <div class="row">
-            <a href="https://www.figma.com/design/5u0W6lUlA1FC1I3ztEZlXr/Untitled?t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
-            <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
-          </div>
-        </article>
-        <!-- การ์ด 5: Widee -->
-        <article class="card project">
+
+        <!-- การ์ด 2: Widee (Internship) -->
+        <article class="card project project-card" data-category="ai-fullstack webapp">
+          <span class="featured-badge" style="background:linear-gradient(135deg,#4f8cff,#00d094)">💼 Internship</span>
           <div class="thumb"><img loading="lazy" src="images/widee-homepage.png" alt="Widee website homepage" /></div>
           <h3>Widee / Agent-One Backoffice</h3>
-          <p class="muted">มีส่วนช่วยพัฒนาระบบ SaaS Backoffice ระหว่างฝึกงาน • React, TypeScript, Node.js, Express, Firebase และ Firestore • พัฒนา API, แก้ไขบั๊ก และทดสอบระบบ</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">OAuth</span>
+          </div>
+          <p class="muted">มีส่วนช่วยพัฒนาระบบ SaaS Backoffice ระหว่างฝึกงานที่ Next Triple Nine Co., Ltd. • พัฒนา Frontend, Backend API, ระบบ Multi-tenant, เชื่อมต่อ OAuth/Webhook และทดสอบระบบ QA</p>
           <div class="row">
             <a href="https://widee.tech" target="_blank" rel="noreferrer">ดูเว็บไซต์ Widee →</a>
           </div>
         </article>
-        <!-- การ์ด 6: Cookie Cozy -->
-        <article class="card project">
+
+        <!-- การ์ด 3: Cookie Cozy -->
+        <article class="card project project-card" data-category="webapp">
           <div class="thumb"><img loading="lazy" src="images/cookie-cozy.png" alt="Cookie Cozy Screenshot" /></div>
-          <h3>🍪 Cookie Cozy</h3>
-          <p class="muted">เว็บแอปพลิเคชันร้านคุกกี้โฮมเมดพรีเมียม • ระบบสั่งซื้อและตะกร้าสินค้า, Interactive Cookie Matcher, จัดกล่องของขวัญ Custom Box และคุกกี้เสี่ยงทาย • HTML/CSS/JavaScript</p>
+          <h3>🍪 Cookie Cozy Bakery</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML5/CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Interactive Matcher</span>
+            <span class="tech-tag">Custom Gift Box</span>
+          </div>
+          <p class="muted">เว็บแอปพลิเคชันร้านคุกกี้โฮมเมดพรีเมียม • ระบบสั่งซื้อและตะกร้าสินค้า, Interactive Cookie Matcher เลือกรสชาติตามอารมณ์, จัดกล่องของขวัญ Custom Box และคุกกี้เสี่ยงทายพร้อมเสียง Effect</p>
           <div class="row">
             <a href="https://taksin105.github.io/cookie-cozy/" target="_blank" rel="noreferrer">ดูเว็บไซต์ →</a>
             <a href="https://github.com/taksin105/cookie-cozy" target="_blank" rel="noreferrer">GitHub Repo →</a>
           </div>
         </article>
-        <!-- การ์ด 7: AutoTech AI -->
-        <article class="card project">
-          <div class="thumb"><img loading="lazy" src="images/autotech-ai.png" alt="AutoTech AI Screenshot" /></div>
-          <h3>🤖 AutoTech AI</h3>
-          <p class="muted">ระบบจำแนกปัญหาและจัดการงานซ่อมรถยนต์อัจฉริยะ • วิเคราะห์อาการด้วย Google Gemini AI, ประเมินความเร่งด่วนและค่าซ่อม, ออกใบรับรถ (PDF) และแจ้งเตือนอัตโนมัติผ่าน n8n & Discord • React, TypeScript, Node.js, Express, Firestore</p>
-          <div class="row">
-            <a href="https://github.com/taksin105/ai-car-problem-classifier" target="_blank" rel="noreferrer">GitHub Repo →</a>
-          </div>
-        </article>
-        <!-- การ์ด 8: Eldoria Expedition Registration -->
-        <article class="card project">
+
+        <!-- การ์ด 4: Eldoria Expedition Registration -->
+        <article class="card project project-card" data-category="webapp">
           <div class="thumb"><img loading="lazy" src="images/expedition-registration.png" alt="Expedition Registration Screenshot" /></div>
           <h3>🧭 Eldoria Expedition Registration</h3>
-          <p class="muted">แบบฟอร์มลงทะเบียนทีมสำรวจดินแดนโบราณเอลดอเรีย • ระบบตรวจสอบความถูกต้องของข้อมูล (Form Validation), โหมดจำลองบั๊กและทดสอบระบบ QA (ก่อน/หลังแก้ไข) • HTML/CSS/JavaScript</p>
+          <div class="tech-tags">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Form Validation</span>
+            <span class="tech-tag">QA Bug Testing</span>
+            <span class="tech-tag">Lucide Icons</span>
+          </div>
+          <p class="muted">แบบฟอร์มลงทะเบียนทีมสำรวจดินแดนโบราณเอลดอเรีย • ระบบตรวจสอบความถูกต้องของข้อมูล (Form Validation) อย่างละเอียด พร้อมโหมดจำลองบั๊กและทดสอบระบบ QA (สลับโหมดก่อน/หลังแก้ 2 บั๊ก)</p>
           <div class="row">
             <a href="https://taksin105.github.io/expedition-registration/" target="_blank" rel="noreferrer">ดูเว็บไซต์ →</a>
             <a href="https://github.com/taksin105/expedition-registration" target="_blank" rel="noreferrer">GitHub Repo →</a>
+          </div>
+        </article>
+
+        <!-- การ์ด 5: ระบบเช่ารถยนต์ออนไลน์ -->
+        <article class="card project project-card" data-category="webapp">
+          <div class="thumb"><img loading="lazy" src="images/car-rent.png" alt="CarRent Screenshot" /></div>
+          <h3>🚗 ระบบเช่ารถยนต์ออนไลน์</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Booking System</span>
+          </div>
+          <p class="muted">เว็บแอปพลิเคชันสำหรับจัดการการเช่ารถยนต์ออนไลน์ • ระบบสั่งจองรถยนต์, ตรวจสอบสถานะรถ, ชำระเงินออนไลน์ และระบบจัดการข้อมูลหลังบ้านสำหรับเจ้าหน้าที่</p>
+          <div class="row">
+            <a href="https://github.com/taksin105/CarRent" target="_blank" rel="noreferrer">GitHub Repo →</a>
+          </div>
+        </article>
+
+        <!-- การ์ด 6: ShoppingCart -->
+        <article class="card project project-card" data-category="webapp">
+          <div class="thumb"><img loading="lazy" src="images/shopping-cart.png" alt="ShoppingCart Screenshot" /></div>
+          <h3>🛒 ShoppingCart System</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">Cart Logic</span>
+          </div>
+          <p class="muted">ระบบตะกร้าสินค้าออนไลน์ • เพิ่ม/ลบสินค้า จัดการรายการ คำนวณยอดรวม และจำลองกระบวนการสั่งซื้อสินค้า</p>
+          <div class="row">
+            <a href="https://github.com/taksin105/ShoppingCart" target="_blank" rel="noreferrer">GitHub Repo →</a>
+          </div>
+        </article>
+
+        <!-- การ์ด 7: UX/UI Design E-commerce App -->
+        <article class="card project project-card" data-category="design">
+          <div class="thumb"><img loading="lazy" src="images/ecommerce-ui.png" alt="E-commerce UX/UI Design" /></div>
+          <h3>🎨 ออกแบบ UX/UI แอป E-commerce</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">UI Design</span>
+            <span class="tech-tag">Wireframing</span>
+            <span class="tech-tag">Prototype</span>
+          </div>
+          <p class="muted">ออกแบบส่วนติดต่อผู้ใช้และประสบการณ์ผู้ใช้แอปพลิเคชันช้อปปิ้ง • Figma • User Flow, Wireframe และ Interactive Prototype ละเอียดครบทุกขั้นตอน</p>
+          <div class="row">
+            <a href="https://www.figma.com/design/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&p=f&t=55swZ9OqjyWAwzol-0" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
+            <a href="https://www.figma.com/proto/lqTzqzbwwTMqgCzyoGmBsB/Untitled?node-id=0-1&t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">Prototype →</a>
+          </div>
+        </article>
+
+        <!-- การ์ด 8: UX/UI Design Movie App -->
+        <article class="card project project-card" data-category="design">
+          <div class="thumb"><img loading="lazy" src="images/movie-ui.png" alt="Movie App UX/UI Design" /></div>
+          <h3>🎬 ออกแบบ UX/UI แอปจองตั๋วหนัง</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Modern Dark UI</span>
+            <span class="tech-tag">Mobile App</span>
+            <span class="tech-tag">Seat Selection</span>
+          </div>
+          <p class="muted">ออกแบบแอปพลิเคชันสำหรับจองตั๋วภาพยนตร์ • Modern UI, User Experience Design, การเลือกรอบฉายและที่นั่ง พร้อมขั้นตอนการชำระเงินที่สะดวกสบาย</p>
+          <div class="row">
+            <a href="https://www.figma.com/design/5u0W6lUlA1FC1I3ztEZlXr/Untitled?t=55swZ9OqjyWAwzol-1" target="_blank" rel="noreferrer">ดูการออกแบบ →</a>
+            <a href="https://www.figma.com/proto/5u0W6lUlA1FC1I3ztEZlXr/Untitled?node-id=0-1&t=GMSH7Ll9guf6f7Uk-1" target="_blank" rel="noreferrer">Prototype →</a>
           </div>
         </article>
       </div>
@@ -954,27 +1133,35 @@
 
     <!-- 5. Certificates -->
     <section id="certificates" class="section reveal">
-      <div class="section-title"><span class="hash">#</span><h2>ใบประกาศนียบัตร (Certificates)</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>ใบประกาศนียบัตร (Certifications)</h2></div>
       
       <!-- Certificate Images Gallery -->
       <div class="grid cols-2" style="margin-bottom:24px">
         <article class="card project">
           <div class="thumb">
-            <img loading="lazy" src="images/certificate-1.png" alt="Certificate 1" style="height:auto;object-fit:contain" />
+            <img loading="lazy" src="images/certificate-1.png" alt="Cisco Networking Certificate" style="height:auto;object-fit:contain" />
           </div>
-          <h3>ใบรับรองการเข้าร่วมโครงการ</h3>
-          <p class="muted">โครงการพัฒนาทักษะด้านเทคโนโลยีสารสนเทศ • เข้าร่วมกิจกรรมและฝึกอบรมเชิงปฏิบัติการ • ได้รับความรู้และประสบการณ์ในการทำงานเป็นทีม</p>
+          <h3>🛡️ Cisco Networking — Cybersecurity</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Ethical Hacker</span>
+            <span class="tech-tag">Cybersecurity</span>
+            <span class="tech-tag">Cisco Academy</span>
+          </div>
+          <p class="muted">ผ่านการรับรองหลักสูตรด้านความปลอดภัยทางไซเบอร์จาก Cisco Networking Academy • Ethical Hacker & Introduction to Cybersecurity • ความรู้ด้าน Network Security และการป้องกันภัยคุกคามทางไซเบอร์</p>
         </article>
         <article class="card project">
           <div class="thumb">
-            <img loading="lazy" src="images/certificate-2.png" alt="Certificate 2" style="height:auto;object-fit:contain" />
+            <img loading="lazy" src="images/certificate-2.png" alt="Web Development Internship Certificate" style="height:auto;object-fit:contain" />
           </div>
-          <h3>ใบประกาศนียบัตรการอบรม</h3>
-          <p class="muted">หลักสูตรการพัฒนาซอฟต์แวร์และการเขียนโปรแกรม • เรียนรู้เทคนิคและเครื่องมือสมัยใหม่ • สามารถนำไปประยุกต์ใช้ในโครงงานจริง</p>
+          <h3>💼 Web Development Internship Certificate</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Next Triple Nine</span>
+            <span class="tech-tag">Widee SaaS</span>
+            <span class="tech-tag">Software / IT</span>
+          </div>
+          <p class="muted">หนังสือรับรองผ่านการฝึกงานตำแหน่ง Software / IT Intern จากบริษัท Next Triple Nine Co., Ltd. • มีส่วนร่วมพัฒนาระบบ Widee / Agent-One Backoffice ด้วย React, TypeScript, Node.js, Express และ Firebase</p>
         </article>
       </div>
-
-
     </section>
 
     <!-- 6. Activities & Achievements -->
@@ -1014,22 +1201,22 @@
         </article>
       </div>
 
-      <div class="grid cols-2"></div>
+      <div class="grid cols-2">
         <div class="card">
-          <h3>กิจกรรม</h3>
+          <h3>กิจกรรมเพื่อสังคมและมหาวิทยาลัย</h3>
           <ul class="list">
-            <li>อาสาพัฒนาชุมชน/งานมหาวิทยาลัย</li>
-            <li>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ"</li>
-            <li>🤖 โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</li>
+            <li>อาสาพัฒนาชุมชนและกิจกรรมส่งเสริมทักษะภายในมหาวิทยาลัยราชภัฏอุดรธานี</li>
+            <li>🌱 กิจกรรมจิตอาสา "ส่งเสริมการเรียนรู้เรื่องการจัดการขยะ" เพื่อสิ่งแวดล้อม</li>
+            <li>🤖 วิทยากร/ผู้ช่วยสอน โครงการค่ายวิทย์น้อย "AI เพื่อสิ่งแวดล้อม"</li>
           </ul>
         </div>
         <div class="card">
-          <h3>รางวัล/ความสำเร็จ</h3>
+          <h3>รางวัลและความสำเร็จ</h3>
           <ul class="list">
-            <li>🏆 รางวัลชนะเลิศอันดับ 1 - ประกวดผลงานวันคริสต์มาสออนไลน์ (Photoshop)</li>
-            <li>รางวัลชนะเลิศโครงงานด้าน IoT</li>
-            <li>ผลงานได้รับเลือกแสดงในนิทรรศการ</li>
-            <li>ใบประกาศนียบัตร/ทุนการศึกษา</li>
+            <li>🏆 รางวัลชนะเลิศอันดับ 1 — ประกวดผลงานวันคริสต์มาสออนไลน์ (Adobe Photoshop)</li>
+            <li>🥇 รางวัลชนะเลิศโครงงานด้าน IoT และระบบสมาร์ตฟาร์ม</li>
+            <li>🌟 ผลงานได้รับเลือกจัดแสดงในงานนิทรรศการวิชาการด้านเทคโนโลยีสารสนเทศ</li>
+            <li>📜 ทุนการศึกษาและใบประกาศนียบัตรผลการเรียนดีเด่น GPAX 3.51</li>
           </ul>
         </div>
       </div>
@@ -1043,7 +1230,11 @@
         <div class="card contact-item">
           <div class="contact-icon">📧</div>
           <h3>Email</h3>
-          <a href="mailto:taksinonly@gmail.com" class="contact-link">taksinonly@gmail.com</a>
+          <a href="mailto:taksinonly@gmail.com" class="contact-link" id="emailText">taksinonly@gmail.com</a>
+          <button class="btn-copy tip" id="copyEmail" aria-label="คัดลอกอีเมล">
+            <span>📋 คัดลอก</span>
+            <span class="tiptext" role="status">คัดลอกแล้ว!</span>
+          </button>
         </div>
         
         <!-- Phone -->
@@ -1122,6 +1313,28 @@
 
   <!-- Floating Back-to-Top Button -->
   <button id="backTop" class="fab" aria-label="กลับขึ้นบน">↑ กลับขึ้นบน</button>
+
+  <!-- Resume Modal -->
+  <div id="resumeModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="resumeModalTitle">📄 เรซูเม่ (Resume) — ทักษิณ นิสภวาณิชย์</h3>
+        <div class="modal-actions">
+          <div class="modal-tabs">
+            <button class="modal-tab active" id="tabResumeTh" type="button">ภาษาไทย (TH)</button>
+            <button class="modal-tab" id="tabResumeEn" type="button">English (EN)</button>
+          </div>
+          <a id="btnDownloadResume" href="images/resume-th.jpg" download="Resume_Taksin_TH.jpg" class="btn-download-resume" title="ดาวน์โหลดเรซูเม่">
+            <span>📥 ดาวน์โหลด</span>
+          </a>
+          <button class="modal-close" id="closeResumeBtn" aria-label="ปิดเรซูเม่">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <img id="resumeImg" src="images/resume-th.jpg" alt="Taksin Nisaphawanit Resume" />
+      </div>
+    </div>
+  </div>
 
   <script>
     // ===== Theme: set initial from localStorage or prefers-color-scheme =====
@@ -1228,44 +1441,71 @@
       createParticles();
     }
 
-    // ===== Image Slider =====
-    let currentSlide = 0;
-    const sliderWrapper = document.getElementById('sliderWrapper');
-    const slides = sliderWrapper?.querySelectorAll('img') || [];
-    const totalSlides = slides.length;
-    const dotsContainer = document.getElementById('sliderDots');
+    // ===== Resume Modal Logic =====
+    const resumeModal = document.getElementById('resumeModal');
+    const openResumeBtn = document.getElementById('openResumeBtn');
+    const closeResumeBtn = document.getElementById('closeResumeBtn');
+    const tabResumeTh = document.getElementById('tabResumeTh');
+    const tabResumeEn = document.getElementById('tabResumeEn');
+    const resumeImg = document.getElementById('resumeImg');
+    const btnDownloadResume = document.getElementById('btnDownloadResume');
 
-    // Create dots
-    for(let i = 0; i < totalSlides; i++){
-      const dot = document.createElement('span');
-      dot.className = 'slider-dot';
-      if(i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
+    function openModal(){
+      resumeModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      resumeModal.classList.remove('show');
+      document.body.style.overflow = '';
     }
 
-    function updateSlider(){
-      sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-      const dots = dotsContainer.querySelectorAll('.slider-dot');
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentSlide);
+    openResumeBtn?.addEventListener('click', openModal);
+    closeResumeBtn?.addEventListener('click', closeModal);
+    resumeModal?.addEventListener('click', (e)=>{
+      if(e.target === resumeModal) closeModal();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && resumeModal?.classList.contains('show')) closeModal();
+    });
+
+    tabResumeTh?.addEventListener('click', ()=>{
+      tabResumeTh.classList.add('active');
+      tabResumeEn.classList.remove('active');
+      resumeImg.src = 'images/resume-th.jpg';
+      resumeImg.alt = 'Taksin Nisaphawanit Resume (Thai)';
+      btnDownloadResume.href = 'images/resume-th.jpg';
+      btnDownloadResume.download = 'Resume_Taksin_TH.jpg';
+    });
+
+    tabResumeEn?.addEventListener('click', ()=>{
+      tabResumeEn.classList.add('active');
+      tabResumeTh.classList.remove('active');
+      resumeImg.src = 'images/resume-en.jpg';
+      resumeImg.alt = 'Taksin Nisaphawanit Resume (English)';
+      btnDownloadResume.href = 'images/resume-en.jpg';
+      btnDownloadResume.download = 'Resume_Taksin_EN.jpg';
+    });
+
+    // ===== Project Category Filter Tabs =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category') || '';
+          if (filter === 'all' || category.includes(filter)) {
+            card.classList.remove('hide');
+          } else {
+            card.classList.add('hide');
+          }
+        });
       });
-    }
-
-    function moveSlide(direction){
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      updateSlider();
-    }
-
-    function goToSlide(index){
-      currentSlide = index;
-      updateSlider();
-    }
-
-    // Auto slide every 5 seconds
-    setInterval(() => {
-      moveSlide(1);
-    }, 5000);
+    });
   </script>
 </body>
 </html>
